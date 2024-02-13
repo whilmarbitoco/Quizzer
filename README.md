@@ -6,7 +6,7 @@ A collaborative repository for our computer programming 2 group
 
 2. **Clone the repository**: Clone your forked repository to your local machine using the following command:
     ```
-    git clone git@github.com:your-username/CodeFusion.git
+    git clone git@github.com/whilmarbitoco/CodeFusion.git
     ```
 
 3. **Change directory to the repository**:

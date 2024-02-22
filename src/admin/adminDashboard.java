@@ -4,6 +4,8 @@
  */
 package admin;
 
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author wb2c0
@@ -13,8 +15,14 @@ public class adminDashboard extends javax.swing.JFrame {
     /**
      * Creates new form adminDashboard
      */
+    
+    DefaultListModel answerListModel;
     public adminDashboard() {
         initComponents();
+        
+        answerListModel = new DefaultListModel();
+        
+        jListAnswer.setModel(answerListModel);
     }
 
     /**

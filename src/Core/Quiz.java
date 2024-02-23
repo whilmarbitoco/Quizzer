@@ -1,11 +1,11 @@
 package Core;
 
 public class Quiz {
-    int time;
-    String question;
-    String answer;
-    String type;
-    Object choices[];
+    public int time;
+    public String question;
+    public String answer;
+    public String type;
+    public Object choices[];
 
     public Quiz(int time, String question, String answer, String type) {
         this.time = time;

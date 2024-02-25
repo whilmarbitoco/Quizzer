@@ -4,7 +4,9 @@
  */
 package student.Controller;
 
+import Core.Packet;
 import Core.Quiz;
+import Core.Student;
 import java.util.ArrayList;
 import student.Model.studentModel;
 import student.loginStudent;
@@ -14,6 +16,7 @@ import student.editStudentDetails;
 import student.forms.DisplayScore;
 import student.forms.formEnumeration;
 import student.forms.formMultipleChoice;
+import student.socket.Client;
 
 /**
  *
@@ -26,6 +29,7 @@ public class studentController implements StudentInterface {
     private studentModel model;
     private studentDashboard view;
     private loginStudent loginView;
+    private Client client;
 
     public studentController(studentModel model, studentDashboard view, loginStudent loginVIew) {
         System.out.println("Controller");
@@ -35,6 +39,10 @@ public class studentController implements StudentInterface {
         this.view.setInterface(this);
         this.loginView.setLoginListener(this);
 
+        this.client = new Client("127.0.0.1", 9901, this);
+        Thread thread = new Thread(this.client);
+        thread.start();
+        
         if (!isLoggedIn) {
             this.loginView.setVisible(true);
         }
@@ -43,21 +51,21 @@ public class studentController implements StudentInterface {
 
     @Override
     public void onLogin(String email, String password) {
-        if (model.authenticate(email, password)) {
-            view.setName(model.getStudent().name);
-            view.setVisible(true);
-            loginView.setVisible(false);
-            isLoggedIn = true;
-        } else {
-
-            loginView.showErrorMessage();
-        }
+        Packet packet = new Packet(null, "Login", "Server", null);
+        packet.email = email;
+        packet.password = password;
+        client.sendMessage(packet);
     }
 
     @Override
     public void startQuiz() {
         if (answered) {
             this.view.alreadyAnswer();
+            return;
+        }
+        
+        if (model.getQuizes() == null) {
+            this.view.showErrorMessage();
             return;
         }
         answered = true;
@@ -100,6 +108,10 @@ public class studentController implements StudentInterface {
 
     @Override
     public void showedScore() {
+        Packet packet = new Packet(null, "Score", "Server", "Client");
+        packet.student = model.getStudent();
+        packet.student.score = model.getScore();
+        client.sendMessage(packet);
         this.view.setVisible(true);
     }
 
@@ -107,6 +119,25 @@ public class studentController implements StudentInterface {
     public void editStudent(String name, String password) {
         this.model.editStudent(name, password);
          view.setName(model.getStudent().name);
+    }
+
+    @Override
+    public void authorize(boolean bol, Student student) {
+        if (bol) {
+            model.setCurrStudent(student);
+            System.out.println("controller " + student.name);
+            view.setName(student.name);
+            view.setVisible(true);
+            loginView.close();
+        } else {
+            loginView.showErrorMessage();
+        }
+    }
+
+    @Override
+    public void setQuiz(ArrayList<Quiz> quiz) {
+           System.out.println(quiz);
+           model.setQuiz(quiz);
     }
 
 }

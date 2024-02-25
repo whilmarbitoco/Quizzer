@@ -1,6 +1,8 @@
 package Core;
 
-public class Quiz {
+import java.io.Serializable;
+
+public class Quiz implements Serializable{
     public int time;
     public String question;
     public String answer;

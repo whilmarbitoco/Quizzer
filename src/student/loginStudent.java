@@ -23,6 +23,10 @@ public class loginStudent extends javax.swing.JFrame {
          
     }
     
+    public void close() {
+        dispose();
+    }
+    
      public void showErrorMessage() {
         JOptionPane.showMessageDialog(rootPane, "Invalid Email or Password", "Login Failed", JOptionPane.ERROR_MESSAGE);
     }

@@ -4,15 +4,15 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/wb2c0/NetBeansProjects/QuizRandomizer/src/student/Model/studentModel.java</file>
-            <file>file:/home/wb2c0/NetBeansProjects/QuizRandomizer/src/student/studentDashboard.java</file>
-            <file>file:/home/wb2c0/NetBeansProjects/QuizRandomizer/src/student/loginStudent.java</file>
             <file>file:/home/wb2c0/NetBeansProjects/QuizRandomizer/src/Core/Quiz.java</file>
             <file>file:/home/wb2c0/NetBeansProjects/QuizRandomizer/src/student/Main.java</file>
-            <file>file:/home/wb2c0/NetBeansProjects/QuizRandomizer/src/student/editStudentDetails.java</file>
-            <file>file:/home/wb2c0/NetBeansProjects/QuizRandomizer/src/student/forms/formEnumeration.java</file>
-            <file>file:/home/wb2c0/NetBeansProjects/QuizRandomizer/src/student/forms/formEssay.java</file>
-            <file>file:/home/wb2c0/NetBeansProjects/QuizRandomizer/src/student/Controller/studentController.java</file>
-            <file>file:/home/wb2c0/NetBeansProjects/QuizRandomizer/src/student/Interface/StudentInterface.java</file>
+            <file>file:/home/wb2c0/NetBeansProjects/QuizRandomizer/src/admin/Controller/adminController.java</file>
+            <file>file:/home/wb2c0/NetBeansProjects/QuizRandomizer/src/admin/NewJFrame.java</file>
+            <file>file:/home/wb2c0/NetBeansProjects/QuizRandomizer/src/admin/adminDashboard.java</file>
+            <file>file:/home/wb2c0/NetBeansProjects/QuizRandomizer/src/admin/Main.java</file>
+            <file>file:/home/wb2c0/NetBeansProjects/QuizRandomizer/src/admin/model/adminModel.java</file>
+            <file>file:/home/wb2c0/NetBeansProjects/QuizRandomizer/src/admin/adminAddStudent.java</file>
+            <file>file:/home/wb2c0/NetBeansProjects/QuizRandomizer/src/admin/Interface/AdminInterface.java</file>
         </group>
     </open-files>
 </project-private>

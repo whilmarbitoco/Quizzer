@@ -4,6 +4,10 @@
  */
 package student.Interface;
 
+import Core.Quiz;
+import Core.Student;
+import java.util.ArrayList;
+
 /**
  *
  * @author wb2c0
@@ -23,4 +27,8 @@ public interface StudentInterface {
     void showedScore();
     
     void editStudent(String name, String password);
+    
+    void authorize(boolean bol, Student student);
+    
+    void setQuiz(ArrayList<Quiz> quiz);
 }

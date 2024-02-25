@@ -6,6 +6,7 @@ package student;
 
 import student.Controller.studentController;
 import student.Model.studentModel;
+import student.socket.Client;
 
 /**
  *
@@ -20,6 +21,7 @@ public class Main {
         loginStudent loginView = new loginStudent();
         studentController controller = new studentController(model, view, loginView);
 
+  
     }
 
 }

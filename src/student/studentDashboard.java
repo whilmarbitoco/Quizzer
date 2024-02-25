@@ -42,6 +42,8 @@ public class studentDashboard extends javax.swing.JFrame {
     public void showErrorMessage() {
         JOptionPane.showMessageDialog(rootPane, "No Available quizes at the moment.", "No Quizes", JOptionPane.ERROR_MESSAGE);
     }
+    
+
 
     /**
      * This method is called from within the constructor to initialize the form.

@@ -36,6 +36,7 @@ public class formMultipleChoice extends javax.swing.JDialog {
         this.choice2.setText(String.valueOf(choices[1]));
         this.choice3.setText(String.valueOf(choices[2]));
         this.choice4.setText(String.valueOf(choices[3]));
+        start();
 
     }
     

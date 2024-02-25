@@ -7,6 +7,7 @@ package student.Model;
 import Core.Quiz;
 import Core.Student;
 import java.util.ArrayList;
+import java.util.UUID;
 
 /**
  *
@@ -19,18 +20,15 @@ public class studentModel {
 
     public studentModel() {
          System.out.println("model");
-        this.quizes = new ArrayList<>();
+        this.quizes = null;
         
-        this.currentStudent = new Student("Whilmar Bitoco", "whlmrbitoco@gmail.com", "letmein");
-        
-        quizes.add(new Quiz(10, "What is 1+1?", "2","Enumeration"));
-        quizes.add(new Quiz(10, "What is 2+2", "4","Enumeration"));
-        
-        Object[] test = {"Laguna", "Davao", "Cavite", "Manila"};
-        quizes.add(new Quiz(10, "What is the capital of the Philippines PhilippinesPhilippinesPhilippinesPhilippines", "Manila","Multiple Choice", test));
+    
+        }
+    
+    
+    public void setQuiz(ArrayList<Quiz> quizes) {
+        this.quizes = quizes;
     }
-    
-    
        
     public void setScore(int score) {
         this.score += score;
@@ -43,6 +41,10 @@ public class studentModel {
     
     public ArrayList<Quiz> getQuizes(){
          return this.quizes;
+    }
+    
+    public void setCurrStudent(Student student) {
+        this.currentStudent = student;
     }
     
     public Student getStudent() {

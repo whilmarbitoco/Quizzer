@@ -4,16 +4,22 @@
  */
 package Core;
 
+import java.io.Serializable;
+import java.util.UUID;
+
 /**
  *
  * @author wb2c0
  */
-public class Student {
+public class Student implements Serializable{
+    public UUID id;
     public String name;
     public String email;
     public String password;
+    public int score;
 
-    public Student(String name, String email, String password) {
+    public Student(UUID id, String name, String email, String password) {
+        this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;

@@ -46,7 +46,7 @@ public class adminDashboard extends javax.swing.JFrame {
         listChoices.setModel(listmodel);
         addQuizList.setModel(quizTableModel);
         
-        type = String.valueOf(quizType.getSelectedItem());
+        
     }
 
     public void setListener(AdminInterface listener) {
@@ -1082,6 +1082,7 @@ public class adminDashboard extends javax.swing.JFrame {
     private void addChoiceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addChoiceBtnActionPerformed
         // TODO add your handling code here:
         int itemLength = listmodel.getSize();
+        type = String.valueOf(quizType.getSelectedItem());
 
         if (type.equalsIgnoreCase("Enumeration") && itemLength < 1) {
             listmodel.addElement(addChoiceField.getText());
@@ -1108,6 +1109,7 @@ public class adminDashboard extends javax.swing.JFrame {
 
     private void addQuizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addQuizActionPerformed
         // TODO add your handling code here:
+        type = String.valueOf(quizType.getSelectedItem());
         if (type.equalsIgnoreCase("Multiple Choice")) {
                this.listener.addMultiQuiz(choices, type, questionField.getText(), answer.getText());
                listmodel.removeAllElements();

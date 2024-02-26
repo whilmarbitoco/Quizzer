@@ -20,7 +20,7 @@ public class ServerHandler implements Runnable{
     }
 
     @Override
-    public void run() {
+    public void run() { 
         try {
             out = new ObjectOutputStream(socket.getOutputStream());
             in = new ObjectInputStream(socket.getInputStream());

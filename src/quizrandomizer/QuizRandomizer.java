@@ -8,13 +8,21 @@ package quizrandomizer;
  *
  * @author wb2c0
  */
-public class QuizRandomizer {
+public class QuizRandomizer{
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        mainMenu main = new mainMenu(null, true);
+        main.setVisible(true);
     }
+    
+    
+    
+    
+    
     
 }

@@ -5,6 +5,7 @@
 package admin.Interface;
 
 import Core.Student;
+import admin.socket.ServerHandler;
 import java.util.UUID;
 
 /**
@@ -37,7 +38,7 @@ public interface AdminInterface {
     
     void broadcastQuiz();
     
-    void studentLogin(String email, String password);
+    void studentLogin(ServerHandler server, String email, String password);
     
     void addScore(Student student);
 }

@@ -50,6 +50,14 @@ public class Server implements Runnable{
             sh.sendMessage(packet);
         }
     }
+    
+    public void sendOneMessage(ServerHandler server, Packet packet)  {
+         for (ServerHandler sh : clients) {
+             if (sh == server) {
+                sh.sendMessage(packet);
+             }
+        }
+    }
 
     public void close() {
         try {

@@ -176,7 +176,9 @@ public class adminAddStudent extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         if (!isEdit) {
+//            System.out.println("adminadd" + fullname.getText() + email.getText() + password.getText());
             listener.addedStudent(fullname.getText(), email.getText(), password.getText());
+            
             dispose();
         } else {
             listener.editStudent(this.uuid, fullname.getText(), email.getText(), password.getText());

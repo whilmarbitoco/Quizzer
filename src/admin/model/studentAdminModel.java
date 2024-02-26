@@ -20,6 +20,10 @@ public class studentAdminModel {
     public studentAdminModel() {
         this.students = new ArrayList<>();
         
+        students.add(new Student(UUID.randomUUID(), "Jerson Dio", "dio@gmail.com", "dio123"));
+ students.add(new Student(UUID.randomUUID(), "Aleah Jalawig", "aleah@gmail.com", "aleah123"));
+ students.add(new Student(UUID.randomUUID(), "John Alim", "alim@gmail.com", "alim123"));
+ 
         students.add(new Student(UUID.randomUUID(), "Whilmar Bitoco", "whlmrbitoco@gmail.com", "letmein"));
     }
     
@@ -76,7 +80,7 @@ public class studentAdminModel {
     
     public void addStudent(String name, String email, String password) {
         UUID uuid = UUID.randomUUID();
-        students.add(new Student(uuid, name, password, password));
+        students.add(new Student(uuid, name, email, password));
         
     }
     

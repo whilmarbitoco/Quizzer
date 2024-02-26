@@ -15,6 +15,7 @@ import admin.model.adminModel;
 import admin.model.quizAdminModel;
 import admin.model.studentAdminModel;
 import admin.socket.Server;
+import admin.socket.ServerHandler;
 import java.util.UUID;
 
 /**
@@ -66,6 +67,7 @@ public class adminController implements AdminInterface {
     @Override
     public void addedStudent(String name, String email, String password) {
         model.addStudent(name, email, password);
+//        System.out.println(name + email + password);
         this.views.setStats(String.valueOf(model.getTotal()), "4", "10");
         refreshTable();
     }
@@ -154,17 +156,17 @@ public class adminController implements AdminInterface {
     }
 
     @Override
-    public void studentLogin(String email, String password) {
+    public void studentLogin(ServerHandler server, String email, String password) {
        Student auth = model.auth(email, password);
        Packet packet = new Packet(null, "Login Authorize", null, "Server");
        
         if (auth != null) {
            packet.auth = true;
            packet.student = auth;
-           server.broadcast(packet);
+           this.server.sendOneMessage(server, packet);
         } else {
             packet.auth = false;
-            server.broadcast(packet);
+           this.server.sendOneMessage(server, packet);
         }
     }
 
@@ -172,6 +174,8 @@ public class adminController implements AdminInterface {
     public void addScore(Student student) {
         views.addStudentScore(student.name, student.email, String.valueOf(student.score));
     }
+
+
             
     
 }

@@ -70,6 +70,7 @@ public class adminDashboard extends javax.swing.JFrame {
 
         for (int i = 0; i < students.size(); i++) {
             Object[] tmp = {students.get(i).id, students.get(i).email, students.get(i).name};
+//            System.out.println(students.get(i).id + students.get(i).email + students.get(i).name);
             tableModel.addRow(tmp);
             tableModel.fireTableDataChanged();
         }
@@ -519,7 +520,7 @@ public class adminDashboard extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Name", "Email"
+                "ID", "Email", "Name"
             }
         ) {
             Class[] types = new Class [] {

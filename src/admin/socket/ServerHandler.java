@@ -28,7 +28,7 @@ public class ServerHandler implements Runnable{
             Packet clientMsg;
             while (!(clientMsg = (Packet) in.readObject()).message.equals("/disconnect")) {
                 if (clientMsg.message.equals("Login")) {
-                    this.listener.studentLogin(clientMsg.email, clientMsg.password);
+                    this.listener.studentLogin(this, clientMsg.email, clientMsg.password);
                 }
                 
                 if (clientMsg.message.equals("Score")) {

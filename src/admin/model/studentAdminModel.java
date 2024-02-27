@@ -6,7 +6,7 @@ package admin.model;
 
 import Core.Student;
 import java.util.ArrayList;
-import java.util.UUID;
+    import java.util.UUID;
 
 /**
  *
@@ -49,7 +49,7 @@ public class studentAdminModel {
     public void editStudent(UUID uuid, String name, String email, String password) {
         for (int i = 0; i < this.students.size(); i++) {
             if (this.students.get(i).id.equals(uuid)) {
-                this.students.set(i, new Student(uuid, name, password, password));      
+                this.students.set(i, new Student(uuid, name, email, password));      
             }
         }
     }

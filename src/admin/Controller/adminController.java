@@ -42,7 +42,7 @@ public class adminController implements AdminInterface {
         this.views.setListener(this);
         this.views.setStats(String.valueOf(model.getTotal()), "4", String.valueOf(quizModel.getTotal()));
         this.views.setStudentTable(model.getAllStudents());
-
+        this.views.setLocationRelativeTo(null);
            
         authLogin();
         
@@ -123,7 +123,9 @@ public class adminController implements AdminInterface {
     
     public void authLogin() {
         if (!isLoggedIn) {
+            adminlogin.setLocationRelativeTo(null);
             adminlogin.setVisible(true);
+            
             return;
         }
         this.views.setVisible(true);

@@ -41,4 +41,4 @@ public interface AdminInterface {
     void studentLogin(ServerHandler server, String email, String password);
     
     void addScore(Student student);
-}
+    }

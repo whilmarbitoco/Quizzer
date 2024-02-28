@@ -108,14 +108,9 @@ public class adminDashboard extends javax.swing.JFrame {
 
         jLabel4 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        container = new javax.swing.JPanel();
         navbar = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        sidebar = new javax.swing.JPanel();
-        dashboard = new javax.swing.JLabel();
-        students = new javax.swing.JLabel();
-        quizes = new javax.swing.JLabel();
         containerList = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
@@ -183,9 +178,6 @@ public class adminDashboard extends javax.swing.JFrame {
         jLabel4.setText("jLabel4");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
-
-        container.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         navbar.setBackground(new java.awt.Color(51, 0, 153));
 
@@ -206,7 +198,7 @@ public class adminDashboard extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
-                .addContainerGap(778, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         navbarLayout.setVerticalGroup(
             navbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,88 +207,16 @@ public class adminDashboard extends javax.swing.JFrame {
                 .addGroup(navbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        container.add(navbar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 910, 80));
+        getContentPane().add(navbar, java.awt.BorderLayout.NORTH);
 
-        sidebar.setBackground(new java.awt.Color(204, 204, 204));
-
-        dashboard.setFont(new java.awt.Font("Liberation Mono", 0, 18)); // NOI18N
-        dashboard.setForeground(new java.awt.Color(0, 0, 0));
-        dashboard.setText("Dashboard");
-        dashboard.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        dashboard.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                dashboardMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                dashboardMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                dashboardMouseExited(evt);
-            }
-        });
-
-        students.setFont(new java.awt.Font("Liberation Mono", 0, 18)); // NOI18N
-        students.setForeground(new java.awt.Color(0, 0, 0));
-        students.setText("Students");
-        students.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        students.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                studentsMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                studentsMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                studentsMouseExited(evt);
-            }
-        });
-
-        quizes.setFont(new java.awt.Font("Liberation Mono", 0, 18)); // NOI18N
-        quizes.setForeground(new java.awt.Color(0, 0, 0));
-        quizes.setText("Quizes");
-        quizes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        quizes.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                quizesMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                quizesMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                quizesMouseExited(evt);
-            }
-        });
-
-        javax.swing.GroupLayout sidebarLayout = new javax.swing.GroupLayout(sidebar);
-        sidebar.setLayout(sidebarLayout);
-        sidebarLayout.setHorizontalGroup(
-            sidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(sidebarLayout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(sidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(quizes)
-                    .addComponent(students)
-                    .addComponent(dashboard))
-                .addContainerGap(25, Short.MAX_VALUE))
-        );
-        sidebarLayout.setVerticalGroup(
-            sidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(sidebarLayout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addComponent(dashboard)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(students)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(quizes)
-                .addContainerGap(306, Short.MAX_VALUE))
-        );
-
-        container.add(sidebar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 160, 450));
+        containerList.setTabPlacement(javax.swing.JTabbedPane.LEFT);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel9.setName("test"); // NOI18N
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
 
@@ -424,7 +344,7 @@ public class adminDashboard extends javax.swing.JFrame {
 
         jLabel12.setFont(new java.awt.Font("Liberation Mono", 1, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel12.setText("Exams");
+        jLabel12.setText("Active Student");
 
         jLabel13.setFont(new java.awt.Font("Liberation Mono", 1, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
@@ -457,11 +377,11 @@ public class adminDashboard extends javax.swing.JFrame {
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addGap(85, 85, 85)
                 .addComponent(jLabel11)
-                .addGap(148, 148, 148)
-                .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel12)
+                .addGap(102, 102, 102)
                 .addComponent(jLabel13)
-                .addGap(85, 85, 85))
+                .addGap(141, 141, 141))
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -474,7 +394,7 @@ public class adminDashboard extends javax.swing.JFrame {
                             .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(26, 26, 26)
                             .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -492,7 +412,7 @@ public class adminDashboard extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addComponent(jLabel16)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -507,7 +427,7 @@ public class adminDashboard extends javax.swing.JFrame {
             .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        containerList.addTab("tab2", jPanel2);
+        containerList.addTab("Dashboard", jPanel2);
 
         jScrollPane2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -606,7 +526,7 @@ public class adminDashboard extends javax.swing.JFrame {
                         .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -627,7 +547,7 @@ public class adminDashboard extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(195, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel14.setFont(new java.awt.Font("Liberation Sans", 1, 36)); // NOI18N
@@ -698,7 +618,7 @@ public class adminDashboard extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        containerList.addTab("tab3", jPanel3);
+        containerList.addTab("Students", jPanel3);
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -752,7 +672,7 @@ public class adminDashboard extends javax.swing.JFrame {
                         .addComponent(jLabel17)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel18)))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         quizDetailsLayout.setVerticalGroup(
             quizDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -766,7 +686,7 @@ public class adminDashboard extends javax.swing.JFrame {
                 .addGroup(quizDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(195, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Manage Quizes", quizDetails);
@@ -894,7 +814,7 @@ public class adminDashboard extends javax.swing.JFrame {
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(addQuiz, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel10.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
@@ -917,7 +837,7 @@ public class adminDashboard extends javax.swing.JFrame {
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(noOfQuiz)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 164, Short.MAX_VALUE)
                         .addComponent(quizSendBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(50, 50, 50))
                     .addGroup(createQuizLayout.createSequentialGroup()
@@ -971,70 +891,13 @@ public class adminDashboard extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        containerList.addTab("tab4", jPanel4);
+        containerList.addTab("Quizes", jPanel4);
 
-        container.add(containerList, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 750, 470));
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(container, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(container, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        getContentPane().add(containerList, java.awt.BorderLayout.CENTER);
+        containerList.getAccessibleContext().setAccessibleName("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void dashboardMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardMouseEntered
-        // TODO add your handling code here:        
-        dashboard.setForeground(new java.awt.Color(102, 102, 102));
-
-    }//GEN-LAST:event_dashboardMouseEntered
-
-    private void dashboardMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardMouseExited
-        // TODO add your handling code here:
-        dashboard.setForeground(new java.awt.Color(0, 0, 0));
-    }//GEN-LAST:event_dashboardMouseExited
-
-    private void dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardMouseClicked
-        // TODO add your handling code here:
-        containerList.setSelectedIndex(0);
-    }//GEN-LAST:event_dashboardMouseClicked
-
-    private void studentsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_studentsMouseClicked
-        // TODO add your handling code here:
-        containerList.setSelectedIndex(1);
-    }//GEN-LAST:event_studentsMouseClicked
-
-    private void studentsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_studentsMouseEntered
-        // TODO add your handling code here:
-        students.setForeground(new java.awt.Color(102, 102, 102));
-    }//GEN-LAST:event_studentsMouseEntered
-
-    private void studentsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_studentsMouseExited
-        // TODO add your handling code here:
-        students.setForeground(new java.awt.Color(0, 0, 0));
-    }//GEN-LAST:event_studentsMouseExited
-
-    private void quizesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_quizesMouseClicked
-        // TODO add your handling code here:
-        containerList.setSelectedIndex(2);
-    }//GEN-LAST:event_quizesMouseClicked
-
-    private void quizesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_quizesMouseEntered
-        // TODO add your handling code here:
-
-        quizes.setForeground(new java.awt.Color(102, 102, 102));
-    }//GEN-LAST:event_quizesMouseEntered
-
-    private void quizesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_quizesMouseExited
-        // TODO add your handling code here:
-        quizes.setForeground(new java.awt.Color(0, 0, 0));
-    }//GEN-LAST:event_quizesMouseExited
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
         // TODO add your handling code here:
@@ -1171,10 +1034,8 @@ public class adminDashboard extends javax.swing.JFrame {
     private javax.swing.JButton addQuiz;
     private javax.swing.JTable addQuizList;
     private javax.swing.JTextField answer;
-    private javax.swing.JPanel container;
     private javax.swing.JTabbedPane containerList;
     private javax.swing.JPanel createQuiz;
-    private javax.swing.JLabel dashboard;
     private javax.swing.JButton deleteBtn;
     private javax.swing.JButton editBtn;
     private javax.swing.JLabel examNo;
@@ -1227,17 +1088,14 @@ public class adminDashboard extends javax.swing.JFrame {
     private javax.swing.JScrollPane quizList;
     private javax.swing.JButton quizSendBtn;
     private javax.swing.JComboBox<String> quizType;
-    private javax.swing.JLabel quizes;
     private javax.swing.JLabel quizesNo;
     private javax.swing.JTable scoreListTable;
     private javax.swing.JButton searchBtn;
     private javax.swing.JTextField searchField;
-    private javax.swing.JPanel sidebar;
     private javax.swing.JLabel studentEmail;
     private javax.swing.JTable studentList;
     private javax.swing.JLabel studentName;
     private javax.swing.JLabel studentNo;
     private javax.swing.JLabel studentPassword;
-    private javax.swing.JLabel students;
     // End of variables declaration//GEN-END:variables
 }

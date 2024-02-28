@@ -4,11 +4,8 @@
  */
 package admin;
 
-import admin.Controller.adminController;
-import admin.model.quizAdminModel;
-import admin.model.studentAdminModel;
-import admin.socket.Server;
-import student.socket.Client;
+import admin.Controller.v2.adminController;
+import admin.views.Dashboard;
 
 /**
  *
@@ -17,10 +14,8 @@ import student.socket.Client;
 public class Main {
     public static void main(String[] args) {
 
-        adminDashboard view = new adminDashboard();
-        studentAdminModel model = new studentAdminModel();
-        quizAdminModel quizModel = new quizAdminModel();
-        adminController controller = new adminController(view, model, quizModel);
+        Dashboard dashboard = new Dashboard();
+        adminController controller = new adminController(dashboard);
 
          
           

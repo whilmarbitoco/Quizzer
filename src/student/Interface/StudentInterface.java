@@ -31,4 +31,6 @@ public interface StudentInterface {
     void authorize(boolean bol, Student student);
     
     void setQuiz(ArrayList<Quiz> quiz);
+    
+    void setIns(String ins);
 }

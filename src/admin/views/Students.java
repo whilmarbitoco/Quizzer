@@ -45,7 +45,7 @@ public class Students extends javax.swing.JFrame {
         navbar = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        user = new javax.swing.JComboBox<>();
         sidebar = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -76,9 +76,14 @@ public class Students extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("uizzer");
 
-        jComboBox1.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(255, 255, 255));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Settings", "Logout" }));
+        user.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        user.setForeground(new java.awt.Color(0, 0, 0));
+        user.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Settings", "Logout" }));
+        user.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout navbarLayout = new javax.swing.GroupLayout(navbar);
         navbar.setLayout(navbarLayout);
@@ -90,7 +95,7 @@ public class Students extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 618, Short.MAX_VALUE)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
         );
         navbarLayout.setVerticalGroup(
@@ -100,7 +105,7 @@ public class Students extends javax.swing.JFrame {
                 .addGroup(navbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
@@ -115,6 +120,9 @@ public class Students extends javax.swing.JFrame {
         jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel3.setPreferredSize(new java.awt.Dimension(125, 28));
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabel3MouseEntered(evt);
             }
@@ -143,6 +151,9 @@ public class Students extends javax.swing.JFrame {
         jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel5.setPreferredSize(new java.awt.Dimension(125, 28));
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabel5MouseEntered(evt);
             }
@@ -343,6 +354,23 @@ public class Students extends javax.swing.JFrame {
         this.listener.exit();
     }//GEN-LAST:event_formWindowClosing
 
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        // TODO add your handling code here:
+        this.listener.openDashboard();
+    }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        // TODO add your handling code here:
+        this.listener.openQuizzes();
+    }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userActionPerformed
+        int userChoice = user.getSelectedIndex();
+        
+        this.listener.adminCallTo(userChoice);
+        
+    }//GEN-LAST:event_userActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -384,7 +412,6 @@ public class Students extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBtn;
     private javax.swing.JPanel container;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -398,5 +425,6 @@ public class Students extends javax.swing.JFrame {
     private javax.swing.JTextField searchField;
     private javax.swing.JPanel sidebar;
     private javax.swing.JTable table;
+    private javax.swing.JComboBox<String> user;
     // End of variables declaration//GEN-END:variables
 }

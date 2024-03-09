@@ -1,7 +1,7 @@
 package admin.socket;
 
 import Core.Packet;
-import admin.Interface.AdminInterface;
+import admin.Interface.v2.adminInterface;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -12,9 +12,9 @@ public class ServerHandler implements Runnable{
     ObjectOutputStream out;
     ObjectInputStream in;
     Socket socket;
-    AdminInterface listener;
+    adminInterface listener;
 
-    public ServerHandler(Socket socket, AdminInterface listener) {
+    public ServerHandler(Socket socket, adminInterface listener) {
         this.socket = socket;
         this.listener = listener;
     }

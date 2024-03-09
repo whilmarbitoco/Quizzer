@@ -137,7 +137,12 @@ public class studentController implements StudentInterface {
     @Override
     public void setQuiz(ArrayList<Quiz> quiz) {
            System.out.println(quiz);
+           
            model.setQuiz(quiz);
     }
 
+    @Override
+    public void setIns(String ins) {
+        view.setInstruction(ins);
+    }
 }

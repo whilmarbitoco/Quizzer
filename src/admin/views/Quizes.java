@@ -4,6 +4,13 @@
  */
 package admin.views;
 
+import Core.Quiz;
+import admin.Interface.v2.adminInterface;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author wb2c0
@@ -13,10 +20,58 @@ public class Quizes extends javax.swing.JFrame {
     /**
      * Creates new form dashboard
      */
+    
+    ArrayList<String> quizNames;
+    DefaultListModel lmodel;
+    DefaultTableModel tmodel;
+    
+    adminInterface listener;
     public Quizes() {
         initComponents();
+        
+        quizNames = new ArrayList<>();
+        
+        lmodel = new DefaultListModel();
+        
+        quizNameList.setModel(lmodel);
+        
+        tmodel = (DefaultTableModel) table.getModel();
+        table.setModel(tmodel);
     }
 
+    public void setListener(adminInterface listener) {
+        this.listener = listener;
+    }
+    
+    public void setQuizes(ArrayList<Core.Quizes> quizes) {
+        lmodel.removeAllElements();
+        for(Core.Quizes qz : quizes) {
+            quizNames.add(qz.name);
+           lmodel.addElement(qz.name);
+        }
+        
+    }
+    
+    public void setStatus(boolean status) {
+        if (status) {
+            this.status.setText("Answered");
+            return;
+        }
+        this.status.setText("Not answered");
+    }
+    
+    public void setTable(ArrayList<Quiz> quiz) {
+        tmodel.setRowCount(0);
+        
+        for (Quiz q : quiz) {
+            Object tmp[] = {q.question, q.answer, q.type};
+            tmodel.addRow(tmp);
+            
+            tmodel.fireTableDataChanged();
+        }            
+    }
+
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,23 +84,29 @@ public class Quizes extends javax.swing.JFrame {
         navbar = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        user = new javax.swing.JComboBox<>();
         sidebar = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         container = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        quizNameList = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        status = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         navbar.setBackground(new java.awt.Color(0, 51, 204));
 
@@ -57,9 +118,14 @@ public class Quizes extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("uizzer");
 
-        jComboBox1.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(255, 255, 255));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Settings", "Logout" }));
+        user.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        user.setForeground(new java.awt.Color(0, 0, 0));
+        user.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Settings", "Logout" }));
+        user.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout navbarLayout = new javax.swing.GroupLayout(navbar);
         navbar.setLayout(navbarLayout);
@@ -71,7 +137,7 @@ public class Quizes extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 628, Short.MAX_VALUE)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
         );
         navbarLayout.setVerticalGroup(
@@ -81,7 +147,7 @@ public class Quizes extends javax.swing.JFrame {
                 .addGroup(navbarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
@@ -96,6 +162,9 @@ public class Quizes extends javax.swing.JFrame {
         jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel3.setPreferredSize(new java.awt.Dimension(125, 28));
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabel3MouseEntered(evt);
             }
@@ -110,6 +179,9 @@ public class Quizes extends javax.swing.JFrame {
         jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel4.setPreferredSize(new java.awt.Dimension(125, 28));
         jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabel4MouseEntered(evt);
             }
@@ -158,25 +230,30 @@ public class Quizes extends javax.swing.JFrame {
 
         getContentPane().add(sidebar, java.awt.BorderLayout.LINE_START);
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        quizNameList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                quizNameListMouseClicked(evt);
+            }
         });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(quizNameList);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Question", "Answer", "Type"
             }
-        ));
-        jScrollPane2.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(table);
 
         jLabel6.setFont(new java.awt.Font("Liberation Sans", 1, 14)); // NOI18N
         jLabel6.setText("Quiz name");
@@ -188,13 +265,26 @@ public class Quizes extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Liberation Sans", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Send");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(0, 51, 204));
         jButton2.setFont(new java.awt.Font("Liberation Sans", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Add Quiz");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
-        jTextField1.setText("jTextField1");
+        jLabel8.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        jLabel8.setText("Status:");
+
+        status.setText("status");
 
         javax.swing.GroupLayout containerLayout = new javax.swing.GroupLayout(container);
         container.setLayout(containerLayout);
@@ -217,8 +307,11 @@ public class Quizes extends javax.swing.JFrame {
                         .addGap(9, 9, 9)
                         .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(containerLayout.createSequentialGroup()
-                                .addComponent(jTextField1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(9, 9, 9)
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(status)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -235,13 +328,16 @@ public class Quizes extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(containerLayout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE))
+                        .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+                                .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel8)
+                                    .addComponent(status)))
+                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane1))
                 .addGap(15, 15, 15))
         );
 
@@ -282,6 +378,52 @@ public class Quizes extends javax.swing.JFrame {
         // TODO add your handling code here:
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
     }//GEN-LAST:event_jLabel5MouseExited
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        this.listener.addQuiz();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        this.listener.exit();
+    }//GEN-LAST:event_formWindowClosing
+
+    private void quizNameListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_quizNameListMouseClicked
+        // TODO add your handling code here:
+        
+//        System.out.println(quizNameList.getSelectedValue());
+        
+        this.listener.displaySelectedQuiz(quizNameList.getSelectedValue());
+    }//GEN-LAST:event_quizNameListMouseClicked
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        // TODO add your handling code here:
+        this.listener.openDashboard();
+    }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        // TODO add your handling code here:
+        this.listener.openStudents();
+    }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       
+        if (table.getRowCount() <= 0) {
+            JOptionPane.showMessageDialog(this, "No Quizes Selected", "Select Quizes", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        
+        this.listener.clickSendQuiz(quizNameList.getSelectedValue());
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userActionPerformed
+        // TODO add your handling code here:
+         int userChoice = user.getSelectedIndex();
+        
+        this.listener.adminCallTo(userChoice);
+        
+    }//GEN-LAST:event_userActionPerformed
 
     /**
      * @param args the command line arguments
@@ -325,7 +467,6 @@ public class Quizes extends javax.swing.JFrame {
     private javax.swing.JPanel container;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -333,12 +474,14 @@ public class Quizes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JList<String> jList1;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel navbar;
+    private javax.swing.JList<String> quizNameList;
     private javax.swing.JPanel sidebar;
+    private javax.swing.JLabel status;
+    private javax.swing.JTable table;
+    private javax.swing.JComboBox<String> user;
     // End of variables declaration//GEN-END:variables
 }

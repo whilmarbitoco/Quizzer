@@ -41,6 +41,7 @@ public class Client implements Runnable{
                 
                 if (recPacket.message.equals("Quiz2Ans")) {
                     this.listener.setQuiz(recPacket.quizes);
+                    this.listener.setIns(recPacket.instruction);
                 }
                 
                 System.out.println(recPacket.from + ":: " + recPacket.message);

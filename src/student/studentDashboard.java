@@ -44,6 +44,9 @@ public class studentDashboard extends javax.swing.JFrame {
     }
     
 
+    public void setInstruction(String text) {
+        instruction.setText(text);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -63,7 +66,7 @@ public class studentDashboard extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        instruction = new javax.swing.JTextArea();
         settings = new javax.swing.JLabel();
         logout = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -125,11 +128,11 @@ public class studentDashboard extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Liberation Mono", 0, 22)); // NOI18N
         jLabel2.setText("Welcome");
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jTextArea2.setText("1. Read all instructions carefully.\n2. Time limit for the exam.\n3. Answer all questions; partial credit possible.\n4. Multiple-choice: Select best answer.\n5. Enumeration: List all items.\n6. Essay: Provide detailed explanations.\n7. Review answers before submission.\n8. Ensure clarity and legibility.\n9. Ask invigilator for assistance if needed.");
-        jTextArea2.setFocusable(false);
-        jScrollPane2.setViewportView(jTextArea2);
+        instruction.setColumns(20);
+        instruction.setRows(5);
+        instruction.setText("1. Read all instructions carefully.\n2. Time limit for the exam.\n3. Answer all questions; partial credit possible.\n4. Multiple-choice: Select best answer.\n5. Enumeration: List all items.\n6. Essay: Provide detailed explanations.\n7. Review answers before submission.\n8. Ensure clarity and legibility.\n9. Ask invigilator for assistance if needed.");
+        instruction.setFocusable(false);
+        jScrollPane2.setViewportView(instruction);
 
         settings.setText("Settings");
         settings.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -261,6 +264,7 @@ public class studentDashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea instruction;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -270,7 +274,6 @@ public class studentDashboard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JLabel logout;
     private javax.swing.JLabel settings;
     private javax.swing.JLabel user;

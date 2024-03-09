@@ -33,6 +33,11 @@ public class Login extends javax.swing.JDialog {
     public void showError(String msg) {
         JOptionPane.showMessageDialog(rootPane, msg, "Error", JOptionPane.ERROR_MESSAGE);    
     }
+   
+    public void loginSuccess() {
+        JOptionPane.showMessageDialog(this, "Login Successful", "Success", JOptionPane.INFORMATION_MESSAGE);
+        container.setSelectedIndex(0);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -66,7 +71,7 @@ public class Login extends javax.swing.JDialog {
         jLabel10 = new javax.swing.JLabel();
         signUpUsername = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        signUpEmailPassword = new javax.swing.JTextField();
+        signUpPassword = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -95,14 +100,14 @@ public class Login extends javax.swing.JDialog {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 100));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 80));
 
         jLabel3.setText("Email");
 
@@ -125,9 +130,11 @@ public class Login extends javax.swing.JDialog {
         });
 
         jLabel6.setText("Dont have an account?");
+        jLabel6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         jLabel7.setText("Sign Up");
         jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel7MouseClicked(evt);
@@ -152,7 +159,7 @@ public class Login extends javax.swing.JDialog {
                             .addComponent(password)
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
+                        .addGap(72, 72, 72)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel7)))
@@ -177,7 +184,7 @@ public class Login extends javax.swing.JDialog {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jLabel7))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
 
         container.addTab("tab2", jPanel3);
@@ -190,6 +197,11 @@ public class Login extends javax.swing.JDialog {
         jButton2.setBackground(new java.awt.Color(0, 51, 204));
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Sign Up");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel11.setText("Already have an account?");
 
@@ -223,7 +235,7 @@ public class Login extends javax.swing.JDialog {
                             .addComponent(jLabel10)
                             .addComponent(signUpUsername)
                             .addComponent(jLabel13)
-                            .addComponent(signUpEmailPassword)))
+                            .addComponent(signUpPassword)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(64, 64, 64)
                         .addComponent(jLabel11)
@@ -247,19 +259,19 @@ public class Login extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(signUpEmailPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(signUpPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(jLabel12))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         container.addTab("tab1", jPanel2);
 
-        getContentPane().add(container, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 360, 460));
+        getContentPane().add(container, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 360, 490));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -278,6 +290,11 @@ public class Login extends javax.swing.JDialog {
         // TODO add your handling code here:
         listener.adminLogin(username.getText(), password.getText());
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        listener.adminSignUp(signUpEmail.getText(), signUpUsername.getText(), signUpPassword.getText());
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -302,7 +319,7 @@ public class Login extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField password;
     private javax.swing.JTextField signUpEmail;
-    private javax.swing.JTextField signUpEmailPassword;
+    private javax.swing.JTextField signUpPassword;
     private javax.swing.JTextField signUpUsername;
     private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables

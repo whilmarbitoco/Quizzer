@@ -12,13 +12,12 @@ import admin.views.Dashboard;
  * @author wb2c0
  */
 public class Main {
+
     public static void main(String[] args) {
 
         Dashboard dashboard = new Dashboard();
         adminController controller = new adminController(dashboard);
 
-         
-          
     }
-    
+
 }

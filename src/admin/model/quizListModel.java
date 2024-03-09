@@ -15,13 +15,43 @@ import java.util.UUID;
  */
 public class quizListModel {
     
-    ArrayList<Quizes> quizes;
+   private ArrayList<Quizes> quizes;
 
     public quizListModel() {
         this.quizes = new ArrayList<>();
         
     }
     
+    
+    public ArrayList<Quizes> getList() {
+        return this.quizes;
+    }
+    
+    public void addQuiz(ArrayList<Quiz> quiz, UUID parentUUID,String name) {
+        UUID uuid = UUID.randomUUID();
+        Quizes tmp = new Quizes(quiz, uuid, name, parentUUID);
+        this.quizes.add(tmp);
+    }
+    
+    public ArrayList<Quiz> getQuizByName(String qName) {
+        for (Quizes q : this.quizes) {
+            if (q.name.equalsIgnoreCase(qName)) {
+                return q.quiz;
+            }
+        }
+        
+        
+        return null;
+    }
+    
+       public boolean getStatus(String qName) {
+        for (Quizes q : this.quizes) {
+            if (q.name.equalsIgnoreCase(qName)) {
+                return q.isSubmitted;
+            }
+        }
+     return false;   
+    }
     
     
     

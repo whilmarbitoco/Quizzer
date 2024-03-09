@@ -13,6 +13,7 @@ public class Packet implements Serializable {
     public String password;
     public boolean auth = false;
     public Student student;
+    public String instruction;
 
     public Packet(ArrayList<Quiz> quizes, String message, String to, String from) {
         this.quizes = quizes;

@@ -28,9 +28,27 @@ public class adminModel {
             if (admins.get(i).email.equalsIgnoreCase(email) && admins.get(i).password.equalsIgnoreCase(password)) {
                 return true;
             }
+        }       
+        return false;
+    }
+    
+    public Admin getByEmail(String email) {
+        for (Admin ad : this.admins) {
+            if (ad.email.equals(email)) {
+                return ad;
+            }
+   
         }
-        
-        
+        return null;
+    }
+    
+        public boolean checkEmail(String email) {
+        for (Admin ad : this.admins) {
+            if (ad.email.equals(email)) {
+                return true;
+            }
+   
+        }
         return false;
     }
     

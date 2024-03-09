@@ -12,15 +12,17 @@ import java.util.UUID;
  * @author wb2c0
  */
 public class Quizes {
-    ArrayList<Quiz> quiz;
-    String name;
-    UUID uuid;
-    
+    public ArrayList<Quiz> quiz;
+    public String name;
+    public UUID uuid;
+    public boolean isSubmitted = false;
+    public UUID parentUUID;    
 
-    public Quizes(ArrayList<Quiz> quiz, UUID uuid, String name) {
+    public Quizes(ArrayList<Quiz> quiz, UUID uuid, String name, UUID parentUUID) {
         this.quiz = quiz;
         this.uuid = uuid;
         this.name = name;
+        this.parentUUID = parentUUID;
     }
     
     

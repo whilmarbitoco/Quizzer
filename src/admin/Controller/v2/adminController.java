@@ -322,6 +322,13 @@ public class adminController implements adminInterface {
     @Override
     public void clickSendQuiz(String name) {
         this.qName = name;
+        
+       boolean status = quizlistModel.getStatus(this.qName);
+        
+        if (status) {
+            quizView.quizSendedMsg();
+            return;
+        }
         this.sendquiz.setVisible(true);
     }
        
@@ -377,10 +384,14 @@ public class adminController implements adminInterface {
     public void broadcast(String name) {
         ArrayList<Quiz> quiz = quizlistModel.getQuizByName(this.qName);
         
+         if (quiz != null) {
          Packet packet = new Packet(quiz, "Quiz2Ans", "Client", "Server");
          packet.instruction = name;
          
         server.broadcast(packet);
+        quizlistModel.setAnswered(this.qName);
+        this.quizView.setStatus(quizlistModel.getStatus(this.qName));
+        }
     }
         
 }

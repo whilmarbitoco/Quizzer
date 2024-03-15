@@ -70,6 +70,10 @@ public class Quizes extends javax.swing.JFrame {
             tmodel.fireTableDataChanged();
         }            
     }
+    
+    public void quizSendedMsg() {
+        JOptionPane.showMessageDialog(this, "This quiz is already been answered", "Already Answered", JOptionPane.INFORMATION_MESSAGE);
+    }
 
     
     /**

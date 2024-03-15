@@ -44,6 +44,15 @@ public class quizListModel {
         return null;
     }
     
+    
+        public void setAnswered(String qName) {
+        for (Quizes q : this.quizes) {
+            if (q.name.equalsIgnoreCase(qName)) {
+               q.isSubmitted = true;
+            }
+        }
+    }
+    
        public boolean getStatus(String qName) {
         for (Quizes q : this.quizes) {
             if (q.name.equalsIgnoreCase(qName)) {

@@ -24,6 +24,8 @@ public class Login extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.listener = listener;
+        
+
     }
     
     public void close() {
@@ -56,11 +58,11 @@ public class Login extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         username = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        password = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        password = new javax.swing.JPasswordField();
         jPanel2 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -115,8 +117,6 @@ public class Login extends javax.swing.JDialog {
 
         jLabel4.setText("Password");
 
-        password.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
-
         jLabel5.setFont(new java.awt.Font("Liberation Mono", 1, 24)); // NOI18N
         jLabel5.setText("Login");
 
@@ -151,18 +151,18 @@ public class Login extends javax.swing.JDialog {
                         .addGap(135, 135, 135)
                         .addComponent(jLabel5))
                     .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(72, 72, 72)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel7))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(username)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4)
-                            .addComponent(password)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(72, 72, 72)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel7)))
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE)
+                            .addComponent(password))))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -184,7 +184,7 @@ public class Login extends javax.swing.JDialog {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jLabel7))
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
         container.addTab("tab2", jPanel3);
@@ -288,7 +288,7 @@ public class Login extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        listener.adminLogin(username.getText(), password.getText());
+        listener.adminLogin(username.getText(), String.valueOf(password.getPassword()));
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -317,7 +317,7 @@ public class Login extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField password;
+    private javax.swing.JPasswordField password;
     private javax.swing.JTextField signUpEmail;
     private javax.swing.JTextField signUpPassword;
     private javax.swing.JTextField signUpUsername;

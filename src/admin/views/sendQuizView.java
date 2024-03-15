@@ -5,6 +5,7 @@
 package admin.views;
 
 import admin.Interface.v2.adminInterface;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -115,7 +116,14 @@ public class sendQuizView extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.listener.broadcast(instruction.getText());
+        if (!this.instruction.getText().isEmpty()) {
+            this.listener.broadcast(instruction.getText());
+            dispose();
+            return;
+        }
+        
+        JOptionPane.showMessageDialog(this, "Please enter instruction for this quiz", "No Instruction", JOptionPane.INFORMATION_MESSAGE);
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

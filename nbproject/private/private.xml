@@ -3,11 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/wb2c0/NetBeansProjects/QuizRandomizer/src/Core/Logger.java</file>
+            <file>file:/home/wb2c0/NetBeansProjects/QuizRandomizer/src/admin/views/Dashboard.java</file>
             <file>file:/home/wb2c0/NetBeansProjects/QuizRandomizer/src/admin/Controller/v2/adminController.java</file>
-            <file>file:/home/wb2c0/NetBeansProjects/QuizRandomizer/src/admin/views/Login.java</file>
+            <file>file:/home/wb2c0/NetBeansProjects/QuizRandomizer/src/admin/views/addQuiz.java</file>
+            <file>file:/home/wb2c0/NetBeansProjects/QuizRandomizer/src/admin/views/createQuizView.java</file>
+            <file>file:/home/wb2c0/NetBeansProjects/QuizRandomizer/src/student/Main.java</file>
+            <file>file:/home/wb2c0/NetBeansProjects/QuizRandomizer/src/admin/Interface/v2/adminInterface.java</file>
+            <file>file:/home/wb2c0/NetBeansProjects/QuizRandomizer/src/student/socket/Client.java</file>
             <file>file:/home/wb2c0/NetBeansProjects/QuizRandomizer/src/admin/Main.java</file>
-            <file>file:/home/wb2c0/NetBeansProjects/QuizRandomizer/src/admin/model/adminModel.java</file>
+            <file>file:/home/wb2c0/NetBeansProjects/QuizRandomizer/src/admin/views/Quizes.java</file>
+            <file>file:/home/wb2c0/NetBeansProjects/QuizRandomizer/src/student/Controller/studentController.java</file>
+            <file>file:/home/wb2c0/NetBeansProjects/QuizRandomizer/src/student/Interface/StudentInterface.java</file>
         </group>
     </open-files>
 </project-private>

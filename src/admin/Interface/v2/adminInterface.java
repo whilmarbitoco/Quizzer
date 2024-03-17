@@ -70,4 +70,6 @@ public interface adminInterface {
     void addScore(Student student);
     
     void broadcast(String qName);
+    
+    void editAdmin(String email, String name, String password);
 }

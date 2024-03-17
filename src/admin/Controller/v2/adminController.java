@@ -37,6 +37,7 @@ import java.util.UUID;
  */
 public class adminController implements adminInterface {
 //    Model
+
     adminModel adModel;
     quizAdminModel quizModel;
     studentAdminModel studAdModel;
@@ -60,21 +61,21 @@ public class adminController implements adminInterface {
     boolean isLoggedIn = false;
     Admin currentAdmin;
     String qName;
-    
+
 //    tmp_array
     ArrayList<Quiz> quizes;
-    
+
 //    funcs
     Logger logger;
-    
+
 //    Socket
     Server server;
-    
+
     public adminController(Dashboard dashView) {
         this.quizes = new ArrayList<>();
-        
+
         this.logger = new Logger("admin.logs");
-        
+
 //        Initialize
         this.adModel = new adminModel();
         this.quizModel = new quizAdminModel();
@@ -107,28 +108,31 @@ public class adminController implements adminInterface {
 
         this.addquiz = new addQuiz(quizView, true, this);
         this.addquiz.setLocationRelativeTo(null);
-        
+
         this.sendquiz = new sendQuizView(quizView, true, this);
         this.sendquiz.setLocationRelativeTo(null);
-        
+
         this.mView = new messageView(null, true);
-        
+
         this.adminProView = new adminProfile(this);
-        
+
         auth();
         logger.log(currentAdmin.name, "Login");
         initialize();
-        
+
         this.server = new Server(this);
-       Thread thread = new Thread(this.server);
-       thread.start();
+        Thread thread = new Thread(this.server);
+        thread.start();
 
     }
 
     public void initialize() {
         Object[] usercombo = {this.currentAdmin.name, "Settings", "Logout"};
         this.dashView.setStats(String.valueOf(this.studAdModel.getTotal()), "0", String.valueOf(this.quizModel.getTotal()));
+        
         this.dashView.setCombo(usercombo);
+        this.studentView.setCombo(usercombo);
+        this.quizView.setCombo(usercombo);
         
         this.studentView.setTable(studAdModel.getAllStudents());
         this.createquizz.populate(this.quizes);
@@ -136,10 +140,10 @@ public class adminController implements adminInterface {
 
     public void auth() {
         this.login = new Login(dashView, true, this);
-       
+
         if (!isLoggedIn) {
             this.login.setLocationRelativeTo(null);
-            this.login.setVisible(true);       
+            this.login.setVisible(true);
             return;
         }
 
@@ -277,7 +281,7 @@ public class adminController implements adminInterface {
         Quiz tmp = new Quiz(time, question, answer, type, id);
 
 //        quizModel.addQuiz(tmp);
-          this.quizes.add(tmp);
+        this.quizes.add(tmp);
         initialize();
 
     }
@@ -296,7 +300,6 @@ public class adminController implements adminInterface {
     public void displaySelectedQuiz(String qName) {
         ArrayList<Quiz> quiz = quizlistModel.getQuizByName(qName);
 
-     
         quizView.setTable(quiz);
         quizView.setStatus(quizlistModel.getStatus(qName));
 
@@ -318,80 +321,88 @@ public class adminController implements adminInterface {
         mView.setVisible(true);
         mView.setMessage(text);
     }
-    
+
     @Override
     public void clickSendQuiz(String name) {
         this.qName = name;
-        
-       boolean status = quizlistModel.getStatus(this.qName);
-        
+
+        boolean status = quizlistModel.getStatus(this.qName);
+
         if (status) {
             quizView.quizSendedMsg();
             return;
         }
         this.sendquiz.setVisible(true);
     }
-       
 
     @Override
     public void adminCallTo(int choice) {
-           switch (choice) {
+        switch (choice) {
             case 0:
                 break;
-            
+
             case 1:
                 this.adminProView.setVisible(true);
                 this.adminProView.setLogs(logger.readLogs("admin.logs"), currentAdmin.name);
+                this.adminProView.setDetails(this.currentAdmin.email, this.currentAdmin.name, this.currentAdmin.password);
                 break;
-            case 2:               
+            case 2:
                 this.exit();
         }
     }
 
     @Override
-    public void adminSignUp(String email, String name, String password) { 
+    public void adminSignUp(String email, String name, String password) {
         if (this.adModel.checkEmail(email)) {
             this.login.showError("Email already exist");
             return;
         }
-        
+
         this.adModel.addAdmin(email, name, password);
         this.login.loginSuccess();
     }
 
     @Override
     public void studentLogin(ServerHandler handler, String email, String password) {
-       Student auth = studAdModel.auth(email, password);
-       Packet packet = new Packet(null, "Login Authorize", null, "Server");
-       
-       if (auth != null) {
-           packet.auth = true;
-           packet.student = auth;
-           this.server.sendOneMessage(handler, packet);
+        Student auth = studAdModel.auth(email, password);
+        Packet packet = new Packet(null, "Login Authorize", null, "Server");
+
+        if (auth != null) {
+            packet.auth = true;
+            packet.student = auth;
+            this.server.sendOneMessage(handler, packet);
         } else {
             packet.auth = false;
-           this.server.sendOneMessage(handler, packet);
+            this.server.sendOneMessage(handler, packet);
         }
     }
-        
+
     @Override
     public void addScore(Student student) {
         System.out.println("ok");
-            this.dashView.setStudents(student.email, student.name, student.score);
+        this.dashView.setStudents(student.email, student.name, student.score);
     }
 
     @Override
     public void broadcast(String name) {
         ArrayList<Quiz> quiz = quizlistModel.getQuizByName(this.qName);
-        
-         if (quiz != null) {
-         Packet packet = new Packet(quiz, "Quiz2Ans", "Client", "Server");
-         packet.instruction = name;
-         
-        server.broadcast(packet);
-        quizlistModel.setAnswered(this.qName);
-        this.quizView.setStatus(quizlistModel.getStatus(this.qName));
+
+        if (quiz != null) {
+            Packet packet = new Packet(quiz, "Quiz2Ans", "Client", "Server");
+            packet.instruction = name;
+
+            server.broadcast(packet);
+            quizlistModel.setAnswered(this.qName);
+            this.quizView.setStatus(quizlistModel.getStatus(this.qName));
         }
     }
-        
+
+    @Override
+    public void editAdmin(String email, String name, String password) {
+        this.adModel.editAdmin(email, name, password);
+        this.currentAdmin = adModel.getByEmail(email);
+        this.adminProView.setDetails(this.currentAdmin.email, this.currentAdmin.name, this.currentAdmin.password);
+        this.initialize();
+    }
+
 }

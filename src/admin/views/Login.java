@@ -37,7 +37,7 @@ public class Login extends javax.swing.JDialog {
     }
    
     public void loginSuccess() {
-        JOptionPane.showMessageDialog(this, "Login Successful", "Success", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Sign Up Successful", "Success", JOptionPane.INFORMATION_MESSAGE);
         container.setSelectedIndex(0);
     }
 
@@ -112,8 +112,6 @@ public class Login extends javax.swing.JDialog {
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 80));
 
         jLabel3.setText("Email");
-
-        username.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
 
         jLabel4.setText("Password");
 

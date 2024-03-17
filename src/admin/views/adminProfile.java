@@ -20,34 +20,35 @@ public class adminProfile extends javax.swing.JFrame {
     adminInterface listener;
     DefaultTableModel tmodel;
     ArrayList<String> logs;
+    boolean isEdit = false;
+
     public adminProfile(adminInterface listener) {
         initComponents();
         this.listener = listener;
         this.tmodel = (DefaultTableModel) table.getModel();
-        
+
         table.setModel(tmodel);
     }
 
-    
     public void setLogs(ArrayList<String> logs, String currName) {
         this.logs = logs;
-        
+
         for (String l : logs) {
             String tmp[] = l.split("\\*");
-            
+
             if (String.valueOf(tmp[0]).strip().equalsIgnoreCase(currName)) {
                 Object[] log = {tmp[1], tmp[2]};
                 tmodel.addRow(log);
             }
         }
     }
-    
-    public void disableForm() {
-        email.disable();
-        name.disable();
-        password.disable();
+
+    public void setDetails(String email, String name, String password) {
+        this.email.setText(email);
+        this.name.setText(name);
+        this.password.setText(password);
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -107,11 +108,16 @@ public class adminProfile extends javax.swing.JFrame {
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
+        email.setFocusable(false);
+
+        password.setFocusable(false);
         password.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 passwordActionPerformed(evt);
             }
         });
+
+        name.setFocusable(false);
 
         Email.setText("Email");
 
@@ -122,6 +128,11 @@ public class adminProfile extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(0, 255, 51));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Edit");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -232,6 +243,30 @@ public class adminProfile extends javax.swing.JFrame {
     private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+
+        if (!isEdit) {
+            isEdit = true;
+            email.setFocusable(true);
+            name.setFocusable(true);
+            password.setFocusable(true);
+            jButton1.setBackground(new java.awt.Color(0, 51, 204));
+            jButton1.setText("Submit");
+            return;
+        }
+
+        isEdit = false;
+        email.setFocusable(false);
+        name.setFocusable(false);
+        password.setFocusable(false);
+        jButton1.setBackground(new java.awt.Color(0, 255, 51));
+        jButton1.setText("Edit");
+        
+        this.listener.editAdmin(email.getText(), name.getText(), password.getText());
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

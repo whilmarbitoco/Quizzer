@@ -57,4 +57,14 @@ public class adminModel {
     }
     
     
+        public void editAdmin(String email, String name, String password) {
+        for (Admin ad : this.admins) {
+            if (ad.email.equals(email)) {
+                ad.email = email;
+                ad.name = name;
+                ad.password = password;
+            }
+   
+        }
+    }
 }

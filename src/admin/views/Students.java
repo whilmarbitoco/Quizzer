@@ -7,6 +7,7 @@ package admin.views;
 import Core.Student;
 import admin.Interface.v2.adminInterface;
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -33,6 +34,20 @@ public class Students extends javax.swing.JFrame {
             Object[] tmp = {students.get(i).id, students.get(i).email, students.get(i).name};
             tmodel.addRow(tmp);
         }
+    }
+    
+        public void setCombo(Object[] items) {
+        DefaultComboBoxModel model = (DefaultComboBoxModel) user.getModel();
+       
+        model.removeAllElements();
+
+         for (int i = 0; i < items.length; i++) {
+            model.addElement(items[i]);
+        }
+
+       
+        user.setModel(model);
+         
     }
 
     public void setListener(adminInterface listener) {

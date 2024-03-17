@@ -7,6 +7,7 @@ package admin.views;
 import Core.Quiz;
 import admin.Interface.v2.adminInterface;
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -20,21 +21,21 @@ public class Quizes extends javax.swing.JFrame {
     /**
      * Creates new form dashboard
      */
-    
     ArrayList<String> quizNames;
     DefaultListModel lmodel;
     DefaultTableModel tmodel;
-    
+
     adminInterface listener;
+
     public Quizes() {
         initComponents();
-        
+
         quizNames = new ArrayList<>();
-        
+
         lmodel = new DefaultListModel();
-        
+
         quizNameList.setModel(lmodel);
-        
+
         tmodel = (DefaultTableModel) table.getModel();
         table.setModel(tmodel);
     }
@@ -42,14 +43,28 @@ public class Quizes extends javax.swing.JFrame {
     public void setListener(adminInterface listener) {
         this.listener = listener;
     }
-    
+
     public void setQuizes(ArrayList<Core.Quizes> quizes) {
         lmodel.removeAllElements();
-        for(Core.Quizes qz : quizes) {
+        for (Core.Quizes qz : quizes) {
             quizNames.add(qz.name);
-           lmodel.addElement(qz.name);
+            lmodel.addElement(qz.name);
         }
-        
+
+    }
+
+        public void setCombo(Object[] items) {
+        DefaultComboBoxModel model = (DefaultComboBoxModel) user.getModel();
+       
+        model.removeAllElements();
+
+         for (int i = 0; i < items.length; i++) {
+            model.addElement(items[i]);
+        }
+
+       
+        user.setModel(model);
+         
     }
     
     public void setStatus(boolean status) {
@@ -59,23 +74,26 @@ public class Quizes extends javax.swing.JFrame {
         }
         this.status.setText("Not answered");
     }
-    
+
     public void setTable(ArrayList<Quiz> quiz) {
         tmodel.setRowCount(0);
-        
-        for (Quiz q : quiz) {
-            Object tmp[] = {q.question, q.answer, q.type};
-            tmodel.addRow(tmp);
-            
-            tmodel.fireTableDataChanged();
-        }            
+
+        try {
+            for (Quiz q : quiz) {
+                Object tmp[] = {q.question, q.answer, q.type};
+                tmodel.addRow(tmp);
+
+                tmodel.fireTableDataChanged();
+            }
+        } catch (Exception e) {
+            System.out.println("No Item");
+        }
     }
-    
+
     public void quizSendedMsg() {
         JOptionPane.showMessageDialog(this, "This quiz is already been answered", "Already Answered", JOptionPane.INFORMATION_MESSAGE);
     }
 
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -357,15 +375,15 @@ public class Quizes extends javax.swing.JFrame {
 
     private void jLabel3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseExited
         // TODO add your handling code here:
-        
+
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
 
     }//GEN-LAST:event_jLabel3MouseExited
 
     private void jLabel4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseEntered
         // TODO add your handling code here:
-          jLabel4.setForeground(new java.awt.Color(102, 102, 102));
-        
+        jLabel4.setForeground(new java.awt.Color(102, 102, 102));
+
     }//GEN-LAST:event_jLabel4MouseEntered
 
     private void jLabel4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseExited
@@ -375,7 +393,7 @@ public class Quizes extends javax.swing.JFrame {
 
     private void jLabel5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseEntered
         // TODO add your handling code here:
-          jLabel5.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel5.setForeground(new java.awt.Color(102, 102, 102));
     }//GEN-LAST:event_jLabel5MouseEntered
 
     private void jLabel5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseExited
@@ -395,9 +413,8 @@ public class Quizes extends javax.swing.JFrame {
 
     private void quizNameListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_quizNameListMouseClicked
         // TODO add your handling code here:
-        
+
 //        System.out.println(quizNameList.getSelectedValue());
-        
         this.listener.displaySelectedQuiz(quizNameList.getSelectedValue());
     }//GEN-LAST:event_quizNameListMouseClicked
 
@@ -412,21 +429,21 @@ public class Quizes extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       
+
         if (table.getRowCount() <= 0) {
             JOptionPane.showMessageDialog(this, "No Quizes Selected", "Select Quizes", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
-        
+
         this.listener.clickSendQuiz(quizNameList.getSelectedValue());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userActionPerformed
         // TODO add your handling code here:
-         int userChoice = user.getSelectedIndex();
-        
+        int userChoice = user.getSelectedIndex();
+
         this.listener.adminCallTo(userChoice);
-        
+
     }//GEN-LAST:event_userActionPerformed
 
     /**

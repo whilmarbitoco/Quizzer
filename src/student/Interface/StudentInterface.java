@@ -33,4 +33,8 @@ public interface StudentInterface {
     void setQuiz(ArrayList<Quiz> quiz);
     
     void setIns(String ins);
+    
+    void netSettings();
+    
+    void setNetwork(String ip, int port);
 }

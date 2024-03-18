@@ -286,6 +286,10 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Search..."/>
           </Properties>
+          <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="searchFieldFocusGained"/>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="searchFieldFocusLost"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="searchBtn">
           <Properties>

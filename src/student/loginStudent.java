@@ -213,7 +213,7 @@ public class loginStudent extends javax.swing.JFrame {
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         // TODO add your handling code here:
-        System.out.println("Click settings");
+        listener.netSettings();
     }//GEN-LAST:event_jLabel3MouseClicked
 
     /**

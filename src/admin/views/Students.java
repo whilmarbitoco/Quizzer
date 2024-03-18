@@ -204,6 +204,14 @@ public class Students extends javax.swing.JFrame {
         getContentPane().add(sidebar, java.awt.BorderLayout.LINE_START);
 
         searchField.setText("Search...");
+        searchField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                searchFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                searchFieldFocusLost(evt);
+            }
+        });
 
         searchBtn.setBackground(new java.awt.Color(204, 204, 0));
         searchBtn.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
@@ -385,6 +393,18 @@ public class Students extends javax.swing.JFrame {
         this.listener.adminCallTo(userChoice);
         
     }//GEN-LAST:event_userActionPerformed
+
+    private void searchFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchFieldFocusGained
+        // TODO add your handling code here:
+        searchField.setText(null);
+    }//GEN-LAST:event_searchFieldFocusGained
+
+    private void searchFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchFieldFocusLost
+        // TODO add your handling code here:
+        if (searchField.getText().isEmpty()) {
+           searchField.setText("Search...");
+        }
+    }//GEN-LAST:event_searchFieldFocusLost
 
     /**
      * @param args the command line arguments

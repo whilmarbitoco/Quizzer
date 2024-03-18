@@ -23,6 +23,11 @@ public class Client implements Runnable{
         this.port = port;
         this.listener = listener;
     }
+    
+    public void setNetwork(String ip, int port){
+        this.host = ip;
+        this.port = port;
+    }
 
     @Override
     public void run() {

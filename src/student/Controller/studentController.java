@@ -16,6 +16,7 @@ import student.editStudentDetails;
 import student.forms.DisplayScore;
 import student.forms.formEnumeration;
 import student.forms.formMultipleChoice;
+import student.networkSettings;
 import student.socket.Client;
 
 /**
@@ -30,6 +31,8 @@ public class studentController implements StudentInterface {
     private studentDashboard view;
     private loginStudent loginView;
     private Client client;
+    private networkSettings networksettings;
+    Thread thread;
 
     public studentController(studentModel model, studentDashboard view, loginStudent loginVIew) {
         System.out.println("Controller");
@@ -39,10 +42,12 @@ public class studentController implements StudentInterface {
         this.view.setInterface(this);
         this.loginView.setLoginListener(this);
 
+        this.networksettings = new networkSettings(view, true, this);
+
         this.client = new Client("127.0.0.1", 9901, this);
-        Thread thread = new Thread(this.client);
+        thread = new Thread(this.client);
         thread.start();
-        
+
         if (!isLoggedIn) {
             this.loginView.setVisible(true);
         }
@@ -63,7 +68,7 @@ public class studentController implements StudentInterface {
             this.view.alreadyAnswer();
             return;
         }
-        
+
         if (model.getQuizes() == null) {
             this.view.showErrorMessage();
             return;
@@ -76,8 +81,8 @@ public class studentController implements StudentInterface {
             if (quiz.get(i).type.equals("Enumeration")) {
                 formEnumeration enumeration = new formEnumeration(view, true, quiz.get(i).answer, quiz.get(i).question, this);
                 enumeration.setVisible(true);
-            } else if (quiz.get(i).type.equals("Multiple Choice")){
-                formMultipleChoice multiple = new formMultipleChoice(view, true, quiz.get(i).answer,quiz.get(i).question, quiz.get(i).choices, this);
+            } else if (quiz.get(i).type.equals("Multiple Choice")) {
+                formMultipleChoice multiple = new formMultipleChoice(view, true, quiz.get(i).answer, quiz.get(i).question, quiz.get(i).choices, this);
                 multiple.setVisible(true);
             }
 
@@ -118,7 +123,7 @@ public class studentController implements StudentInterface {
     @Override
     public void editStudent(String name, String password) {
         this.model.editStudent(name, password);
-         view.setName(model.getStudent().name);
+        view.setName(model.getStudent().name);
     }
 
     @Override
@@ -136,13 +141,26 @@ public class studentController implements StudentInterface {
 
     @Override
     public void setQuiz(ArrayList<Quiz> quiz) {
-           System.out.println(quiz);
-           
-           model.setQuiz(quiz);
+        System.out.println(quiz);
+
+        model.setQuiz(quiz);
     }
 
     @Override
     public void setIns(String ins) {
         view.setInstruction(ins);
+    }
+
+    @Override
+    public void netSettings() {
+        networksettings.setVisible(true);
+    }
+
+    @Override
+    public void setNetwork(String ip, int port) {
+        thread.interrupt();
+        client.setNetwork(ip, port);
+
+       thread.start();
     }
 }

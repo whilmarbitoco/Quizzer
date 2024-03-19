@@ -1,6 +1,7 @@
 package admin.socket;
 
 import Core.Packet;
+import Core.Student;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -34,7 +35,12 @@ public class ServerHandler implements Runnable{
                 if (clientMsg.message.equals("Score")) {
                     this.listener.addScore(clientMsg.student);
                 }
-                System.out.println(clientMsg.from + ":: " + clientMsg.message);
+               
+                if (clientMsg.message.equals("0xEditStudent")) {
+                    System.out.println("server checked...");
+                    Student tmp = clientMsg.student;
+                   this.listener.saveEditStudent(tmp.id, tmp.name, tmp.email, tmp.password);
+                }
             }
         } catch (IOException | ClassNotFoundException e) {
             close();

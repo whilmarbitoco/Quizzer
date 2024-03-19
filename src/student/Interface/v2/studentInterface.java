@@ -32,4 +32,8 @@ public interface studentInterface {
     void serverOffline();
     
     void answer(String studentAnswer, String correctAnswer);
+    
+    void callTo(int choice);
+    
+    void editStudent(String name, String password);
 }

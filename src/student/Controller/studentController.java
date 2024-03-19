@@ -12,7 +12,7 @@ import student.Model.studentModel;
 import student.Views.loginStudentView;
 import student.Views.v2.DashboardView;
 import student.Interface.StudentInterface;
-import student.Views.editStudentView;
+import student.Views.v2.editView;
 import student.Views.v2.DisplayScore;
 import student.Views.v2.formEnumeration;
 import student.Views.v2.formMultipleChoice;
@@ -107,7 +107,7 @@ public class studentController implements StudentInterface {
 
     @Override
     public void settings() {
-        editStudentView editstudent = new editStudentView(dashView, true, this, this.model.getStudent());
+        editView editstudent = new editView(dashView, true, this, this.model.getStudent());
         editstudent.setVisible(true);
     }
 

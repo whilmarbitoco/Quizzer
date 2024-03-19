@@ -5,7 +5,6 @@
 package student.Views.v2;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import student.Interface.v2.studentInterface;
 
@@ -229,7 +228,8 @@ public class DashboardView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void userBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userBoxActionPerformed
-        // TODO add your handling code here:
+        int choice = userBox.getSelectedIndex();    
+        this.listener.callTo(choice);
     }//GEN-LAST:event_userBoxActionPerformed
 
 

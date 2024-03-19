@@ -2,14 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package student.forms;
+package student.Views.v2;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Enumeration;
 import javax.swing.AbstractButton;
 import javax.swing.Timer;
-import student.Interface.StudentInterface;
+import student.Interface.v2.studentInterface;
 
 /**
  *
@@ -21,10 +21,10 @@ public class formMultipleChoice extends javax.swing.JDialog {
      * Creates new form formMultipleChoice
      */
     private String answer;
-    private StudentInterface listener;
+    private studentInterface listener;
     private int time = 10;
-    
-    public formMultipleChoice(java.awt.Frame parent, boolean modal,String answer,String question, Object[] choices, StudentInterface listener) {
+
+    public formMultipleChoice(java.awt.Frame parent, boolean modal, String answer, String question, int time,Object[] choices, studentInterface listener) {
         super(parent, modal);
         initComponents();
 
@@ -36,18 +36,20 @@ public class formMultipleChoice extends javax.swing.JDialog {
         this.choice2.setText(String.valueOf(choices[1]));
         this.choice3.setText(String.valueOf(choices[2]));
         this.choice4.setText(String.valueOf(choices[3]));
+        
+        this.time = time;
         start();
 
     }
-    
-            public void start() {
+
+    public void start() {
         Timer timer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (time > 0) {
                     currentTime.setText(String.valueOf(time--));
                 } else {
-                   
+
                     dispose();
                     ((Timer) e.getSource()).stop();
                 }
@@ -204,20 +206,20 @@ public class formMultipleChoice extends javax.swing.JDialog {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(132, 132, 132)
+                .addGap(126, 126, 126)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
-                .addContainerGap(136, Short.MAX_VALUE))
+                .addContainerGap(153, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(14, 14, 14)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 380, -1));
@@ -242,24 +244,6 @@ public class formMultipleChoice extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_choice1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-//    public static void main(String args[]) {
-//
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                formMultipleChoice dialog = new formMultipleChoice(new javax.swing.JFrame(), true);
-//                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-//                    @Override
-//                    public void windowClosing(java.awt.event.WindowEvent e) {
-//                        System.exit(0);
-//                    }
-//                });
-//                dialog.setVisible(true);
-//            }
-//        });
-//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup btnGroup;

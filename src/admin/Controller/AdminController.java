@@ -373,6 +373,7 @@ public class AdminController implements AdminInterface {
             this.server.sendOneMessage(handler, packet);
         } else {
             packet.auth = false;
+            packet.message = "x0FailedLogin";
             this.server.sendOneMessage(handler, packet);
         }
     }

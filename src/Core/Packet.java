@@ -11,7 +11,7 @@ public class Packet implements Serializable {
     public ArrayList<Quiz> quizes;
     public String email;
     public String password;
-    public boolean auth = false;
+    public boolean auth;
     public Student student;
     public String instruction;
 

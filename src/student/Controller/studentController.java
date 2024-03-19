@@ -13,9 +13,9 @@ import student.Views.loginStudentView;
 import student.Views.v2.DashboardView;
 import student.Interface.StudentInterface;
 import student.Views.editStudentView;
-import student.forms.DisplayScore;
-import student.forms.formEnumeration;
-import student.forms.formMultipleChoice;
+import student.Views.v2.DisplayScore;
+import student.Views.v2.formEnumeration;
+import student.Views.v2.formMultipleChoice;
 import student.Views.v2.networkSettingsView;
 import student.socket.Client;
 
@@ -79,7 +79,7 @@ public class studentController implements StudentInterface {
 
         for (int i = 0; i < quiz.size(); i++) {
             if (quiz.get(i).type.equals("Enumeration")) {
-                formEnumeration enumeration = new formEnumeration(dashView, true, quiz.get(i).answer, quiz.get(i).question, this);
+                formEnumeraFtion enumeration = new formEnumeration(dashView, true, quiz.get(i).answer, quiz.get(i).question, this);
                 enumeration.setVisible(true);
             } else if (quiz.get(i).type.equals("Multiple Choice")) {
                 formMultipleChoice multiple = new formMultipleChoice(dashView, true, quiz.get(i).answer, quiz.get(i).question, quiz.get(i).choices, this);

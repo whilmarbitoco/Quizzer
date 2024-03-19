@@ -2,13 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package student.forms;
+package student.Views.v2;
 
-import Core.CountdownTimer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
-import student.Interface.StudentInterface;
+import student.Interface.v2.studentInterface;
 
 /**
  *
@@ -19,28 +18,28 @@ public class formEnumeration extends javax.swing.JDialog {
     /**
      * Creates new form formMultipleChoice
      */
-    private StudentInterface listener;
+    private studentInterface listener;
     private String ans;
     private int time = 15;
 
-    public formEnumeration(java.awt.Frame parent, boolean modal, String ans, String question, StudentInterface listener) {
+    public formEnumeration(java.awt.Frame parent, boolean modal, String ans, String question, int time,studentInterface listener) {
         super(parent, modal);
         initComponents();
         this.question.setText(question);
         this.listener = listener;
         this.ans = ans;
+        this.time = time;
         start();
     }
 
-    
-        public void start() {
+    public void start() {
         Timer timer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (time > 0) {
                     currentTime.setText(String.valueOf(time--));
                 } else {
-                    
+
                     dispose();
                     ((Timer) e.getSource()).stop();
                 }
@@ -48,7 +47,6 @@ public class formEnumeration extends javax.swing.JDialog {
         });
         timer.start();
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.

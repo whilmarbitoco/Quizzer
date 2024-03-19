@@ -4,6 +4,8 @@
  */
 package student.Views.v2;
 
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import student.Interface.v2.studentInterface;
 
@@ -17,14 +19,27 @@ public class DashboardView extends javax.swing.JFrame {
      * Creates new form studentDashboard
      */
     private studentInterface listener;
-
+    private DefaultComboBoxModel comboModel;
+    
     public DashboardView(studentInterface listener) {
         initComponents();
         this.listener = listener;
+        
+        this.comboModel = (DefaultComboBoxModel) userBox.getModel();
+        
+        userBox.setModel(comboModel);
     }
 
     public void setName(String user) {
         this.user.setText(user);
+        Object[] tmp = {user, "Settings", "Logout"};
+        
+        comboModel.removeAllElements();
+        
+        for(Object t : tmp) {
+            comboModel.addElement(t);
+        }
+        
     }
 
     public void alreadyAnswer() {
@@ -38,6 +53,11 @@ public class DashboardView extends javax.swing.JFrame {
 
     public void setInstruction(String text) {
         instruction.setText(text);
+    }
+    
+    public void quizReady() {
+        jButton1.setBackground(new java.awt.Color(0, 51, 204));
+        jButton1.setEnabled(true);
     }
 
     /**
@@ -53,7 +73,7 @@ public class DashboardView extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        userBox = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         user = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -61,6 +81,7 @@ public class DashboardView extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         instruction = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -87,11 +108,11 @@ public class DashboardView extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("uizzer");
 
-        jComboBox1.setForeground(new java.awt.Color(51, 51, 51));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Student", "Settings", "Logout" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        userBox.setForeground(new java.awt.Color(51, 51, 51));
+        userBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Student", "Settings", "Logout" }));
+        userBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                userBoxActionPerformed(evt);
             }
         });
 
@@ -105,7 +126,7 @@ public class DashboardView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 469, Short.MAX_VALUE)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(userBox, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
         );
         jPanel1Layout.setVerticalGroup(
@@ -115,7 +136,7 @@ public class DashboardView extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jLabel9)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(userBox, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
@@ -136,10 +157,12 @@ public class DashboardView extends javax.swing.JFrame {
         instruction.setFocusable(false);
         jScrollPane2.setViewportView(instruction);
 
-        jButton1.setBackground(new java.awt.Color(0, 51, 204));
+        jButton1.setBackground(new java.awt.Color(102, 102, 102));
         jButton1.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Answer");
+        jButton1.setEnabled(false);
+        jButton1.setFocusable(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -182,6 +205,21 @@ public class DashboardView extends javax.swing.JFrame {
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 610, 430));
 
+        jPanel3.setBackground(new java.awt.Color(153, 153, 153));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 110, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 430, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 110, 430));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -190,23 +228,24 @@ public class DashboardView extends javax.swing.JFrame {
         this.listener.startQuiz();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void userBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_userBoxActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea instruction;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel user;
+    private javax.swing.JComboBox<String> userBox;
     // End of variables declaration//GEN-END:variables
 }

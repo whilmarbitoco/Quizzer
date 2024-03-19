@@ -6,27 +6,21 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.Scanner;
-import student.Interface.StudentInterface;
+import student.Interface.v2.studentInterface;
 
-public class Client implements Runnable{
+public class Client implements Runnable {
 
     public Socket socket;
     public String host;
     public int port;
     public ObjectOutputStream out;
     public ObjectInputStream in;
-    public StudentInterface listener;
+    public studentInterface listener;
 
-    public Client(String host, int port, StudentInterface listener) {
+    public Client(String host, int port, studentInterface listener) {
         this.host = host;
         this.port = port;
         this.listener = listener;
-    }
-    
-    public void setNetwork(String ip, int port){
-        this.host = ip;
-        this.port = port;
     }
 
     @Override
@@ -36,21 +30,21 @@ public class Client implements Runnable{
             out = new ObjectOutputStream(socket.getOutputStream());
             in = new ObjectInputStream(socket.getInputStream());
 
-
             Packet recPacket;
             while (!(recPacket = (Packet) in.readObject()).message.equals("/close")) {
-                
+
                 if (recPacket.auth) {
                     this.listener.authorize(recPacket.auth, recPacket.student);
                 } 
-                
+                if(!recPacket.auth && recPacket.message.equals("x0FailedLogin")) {
+                    this.listener.loginFailed();
+                }
+
                 if (recPacket.message.equals("Quiz2Ans")) {
                     this.listener.setQuiz(recPacket.quizes);
                     this.listener.setIns(recPacket.instruction);
                 }
-                
-                System.out.println(recPacket.from + ":: " + recPacket.message);
-                System.out.println(recPacket.quizes);
+
             }
 
         } catch (IOException | ClassNotFoundException e) {
@@ -61,10 +55,9 @@ public class Client implements Runnable{
     public void sendMessage(Packet packet) {
         try {
             out.writeObject(packet);
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException | NullPointerException e) {
+            this.listener.serverOffline();
         }
     }
-    
-   
+
 }

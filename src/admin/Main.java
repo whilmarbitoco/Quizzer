@@ -13,7 +13,7 @@ import admin.views.DashboardView;
  */
 public class Main {
 
-    public static void main(String[] args) {      
+    public static void main(String[] args) {
         AdminController controller = new AdminController();
 
     }

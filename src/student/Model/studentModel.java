@@ -7,40 +7,38 @@ package student.Model;
 import Core.Quiz;
 import Core.Student;
 import java.util.ArrayList;
-import java.util.UUID;
+import java.util.Collections;
 
 /**
  *
  * @author wb2c0
  */
 public class studentModel {
+    
     private ArrayList<Quiz> quizes;
     private Student currentStudent;
     private int score = 0;
-
+    
     public studentModel() {
-         System.out.println("model");
         this.quizes = null;
         
-    
-        }
-    
+    }
     
     public void setQuiz(ArrayList<Quiz> quizes) {
         this.quizes = quizes;
+        Collections.shuffle(this.quizes);
     }
-       
+    
     public void setScore(int score) {
         this.score += score;
     }
     
-      public int getScore() {
-       return this.score;
+    public int getScore() {
+        return this.score;
     }
     
-    
-    public ArrayList<Quiz> getQuizes(){
-         return this.quizes;
+    public ArrayList<Quiz> getQuizes() {
+        return this.quizes;
     }
     
     public void setCurrStudent(Student student) {

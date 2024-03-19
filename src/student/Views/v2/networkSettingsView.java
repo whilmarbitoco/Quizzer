@@ -110,9 +110,7 @@ public class networkSettingsView extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-
         this.listener.setNetwork(host.getText(), Integer.parseInt(port.getText()));
-
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

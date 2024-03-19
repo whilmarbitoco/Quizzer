@@ -30,6 +30,7 @@ public class studentController implements studentInterface {
     networkSettingsView networkView;
     DashboardView dashboard;
     editView edit;
+    networkSettingsView netView;
 
 //    Model
     studentModel studentmodel;
@@ -50,11 +51,15 @@ public class studentController implements studentInterface {
         dashboard = new DashboardView(this);
         dashboard.setLocationRelativeTo(null);
         
+        netView = new networkSettingsView(login, true, this);
+        netView.setLocationRelativeTo(null);
+        
         studentmodel = new studentModel();
         
         this.client = new Client("127.0.0.1", 9901, this);
         Thread thread = new Thread(this.client);
         thread.start();
+        
         
         auth();
     }
@@ -98,7 +103,7 @@ public class studentController implements studentInterface {
     
     @Override
     public void netSettings() {
-        
+        netView.setVisible(true);
     }
     
     @Override

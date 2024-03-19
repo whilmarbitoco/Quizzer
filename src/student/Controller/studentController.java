@@ -7,6 +7,7 @@ package student.Controller;
 import Core.Packet;
 import Core.Quiz;
 import Core.Student;
+import Core.confirmDialogView;
 import java.util.ArrayList;
 import student.Interface.studentInterface;
 import student.Model.studentModel;
@@ -31,6 +32,7 @@ public class studentController implements studentInterface {
     DashboardView dashboard;
     editView edit;
     networkSettingsView netView;
+    confirmDialogView confirmExit;
 
 //    Model
     studentModel studentmodel;
@@ -54,12 +56,15 @@ public class studentController implements studentInterface {
         netView = new networkSettingsView(login, true, this);
         netView.setLocationRelativeTo(null);
         
+        confirmExit = new confirmDialogView(dashboard, true);
+        confirmExit.setLocationRelativeTo(dashboard);
+        confirmExit.studentListener(this);
+        
         studentmodel = new studentModel();
         
         this.client = new Client("127.0.0.1", 9901, this);
         Thread thread = new Thread(this.client);
         thread.start();
-        
         
         auth();
     }
@@ -182,7 +187,6 @@ public class studentController implements studentInterface {
     
     @Override
     public void editStudent(String name, String password) {
-        System.err.println("dsdsd");
         this.studentmodel.editStudent(name, password);
         dashboard.setName(studentmodel.getStudent().name);
         
@@ -195,6 +199,21 @@ public class studentController implements studentInterface {
         
         client.sendMessage(packet);
         
+    }
+    
+    @Override
+    public void exit() {
+        confirmExit.setVisible(true);
+    }
+    
+    @Override
+    public void closed() {
+        if (!confirmExit.value) {
+            confirmExit.close();
+            return;
+        }
+        
+        System.exit(0);
     }
     
 }

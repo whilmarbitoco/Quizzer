@@ -23,7 +23,7 @@ import admin.views.QuizesView;
 import admin.views.StudentsView;
 import admin.views.addQuizView;
 import admin.views.adminProfileView;
-import admin.views.confirmDialogView;
+import Core.confirmDialogView;
 import admin.views.createQuizView;
 import admin.views.messageView;
 import admin.views.sendQuizView;
@@ -87,7 +87,9 @@ public class AdminController implements AdminInterface {
         this.dashView.setListener(this);
         this.dashView.setLocationRelativeTo(null);
 
-        this.exit = new confirmDialogView(null, true, this);
+        this.exit = new confirmDialogView(null, true);
+        this.exit.setIsAdmin();
+        this.exit.adminListener(this);
 
         this.studentView = new StudentsView();
         this.studentView.setLocationRelativeTo(null);
@@ -200,7 +202,7 @@ public class AdminController implements AdminInterface {
 
     @Override
     public void close() {
-        System.out.println(exit.value);
+        
         if (!exit.value) {
             exit.close();
             return;

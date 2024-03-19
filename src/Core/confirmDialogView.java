@@ -2,9 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package admin.views;
+package Core;
 
 import admin.Interface.AdminInterface;
+import student.Interface.studentInterface;
 
 /**
  *
@@ -16,12 +17,26 @@ public class confirmDialogView extends javax.swing.JDialog {
      * Creates new form confirmExit
      */
     public boolean value;
-    AdminInterface listener;
-    public confirmDialogView(java.awt.Frame parent, boolean modal, AdminInterface listener) {
+    AdminInterface adminListener;
+    studentInterface studentListener;
+    boolean isStudent = true;
+    
+    
+    public confirmDialogView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
-        this.listener = listener;
+    }
+
+    public void adminListener(AdminInterface listener) {
+        this.adminListener = listener;
+    }
+
+    public void studentListener(studentInterface listener) {
+        this.studentListener = listener;
+    }
+
+    public void setIsAdmin() {
+        this.isStudent = false;
     }
     
     public void setText(String text) {
@@ -31,7 +46,7 @@ public class confirmDialogView extends javax.swing.JDialog {
     public void close() {
         dispose();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -119,20 +134,29 @@ public class confirmDialogView extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         this.value = true;
-        
-        this.listener.close();
+       if (isStudent) {
+            studentListener.closed();
+            return;
+        }
+       
+       adminListener.close();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         this.value = false;
+        if (isStudent) {
+            studentListener.closed();
+            return;
+        }
         
-        this.listener.close();
+        adminListener.close();
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
-      
+
     }//GEN-LAST:event_formWindowClosing
 
 

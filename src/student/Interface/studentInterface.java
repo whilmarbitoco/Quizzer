@@ -36,4 +36,8 @@ public interface studentInterface {
     void callTo(int choice);
     
     void editStudent(String name, String password);
+    
+    void exit();
+    
+    void closed();
 }

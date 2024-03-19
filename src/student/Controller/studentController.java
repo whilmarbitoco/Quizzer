@@ -9,14 +9,14 @@ import Core.Quiz;
 import Core.Student;
 import java.util.ArrayList;
 import student.Model.studentModel;
-import student.loginStudent;
-import student.studentDashboard;
+import student.Views.loginStudentView;
+import student.Views.v2.DashboardView;
 import student.Interface.StudentInterface;
-import student.editStudentDetails;
+import student.Views.editStudentView;
 import student.forms.DisplayScore;
 import student.forms.formEnumeration;
 import student.forms.formMultipleChoice;
-import student.networkSettings;
+import student.Views.v2.networkSettingsView;
 import student.socket.Client;
 
 /**
@@ -28,21 +28,21 @@ public class studentController implements StudentInterface {
     private boolean isLoggedIn = false;
     private boolean answered = false;
     private studentModel model;
-    private studentDashboard view;
-    private loginStudent loginView;
+    private DashboardView dashView;
+    private loginStudentView loginView;
     private Client client;
-    private networkSettings networksettings;
+    private networkSettingsView networksettings;
     Thread thread;
 
-    public studentController(studentModel model, studentDashboard view, loginStudent loginVIew) {
+    public studentController() {
         System.out.println("Controller");
-        this.model = model;
-        this.view = view;
-        this.loginView = loginVIew;
-        this.view.setInterface(this);
+        this.model = new studentModel();
+        this.dashView = new DashboardView();
+        this.loginView = new loginStudentView();
+        this.dashView.setInterface(this);
         this.loginView.setLoginListener(this);
 
-        this.networksettings = new networkSettings(view, true, this);
+        this.networksettings = new networkSettingsView(dashView, true, this);
 
         this.client = new Client("127.0.0.1", 9901, this);
         thread = new Thread(this.client);
@@ -65,29 +65,29 @@ public class studentController implements StudentInterface {
     @Override
     public void startQuiz() {
         if (answered) {
-            this.view.alreadyAnswer();
+            this.dashView.alreadyAnswer();
             return;
         }
 
         if (model.getQuizes() == null) {
-            this.view.showErrorMessage();
+            this.dashView.showErrorMessage();
             return;
         }
         answered = true;
-        this.view.setVisible(false);
+        this.dashView.setVisible(false);
         ArrayList<Quiz> quiz = this.model.getQuizes();
 
         for (int i = 0; i < quiz.size(); i++) {
             if (quiz.get(i).type.equals("Enumeration")) {
-                formEnumeration enumeration = new formEnumeration(view, true, quiz.get(i).answer, quiz.get(i).question, this);
+                formEnumeration enumeration = new formEnumeration(dashView, true, quiz.get(i).answer, quiz.get(i).question, this);
                 enumeration.setVisible(true);
             } else if (quiz.get(i).type.equals("Multiple Choice")) {
-                formMultipleChoice multiple = new formMultipleChoice(view, true, quiz.get(i).answer, quiz.get(i).question, quiz.get(i).choices, this);
+                formMultipleChoice multiple = new formMultipleChoice(dashView, true, quiz.get(i).answer, quiz.get(i).question, quiz.get(i).choices, this);
                 multiple.setVisible(true);
             }
 
         }
-        DisplayScore totalScore = new DisplayScore(view, true, this, String.valueOf(model.getScore()));
+        DisplayScore totalScore = new DisplayScore(dashView, true, this, String.valueOf(model.getScore()));
         totalScore.setVisible(true);
     }
 
@@ -107,7 +107,7 @@ public class studentController implements StudentInterface {
 
     @Override
     public void settings() {
-        editStudentDetails editstudent = new editStudentDetails(view, true, this, this.model.getStudent());
+        editStudentView editstudent = new editStudentView(dashView, true, this, this.model.getStudent());
         editstudent.setVisible(true);
     }
 
@@ -117,13 +117,13 @@ public class studentController implements StudentInterface {
         packet.student = model.getStudent();
         packet.student.score = model.getScore();
         client.sendMessage(packet);
-        this.view.setVisible(true);
+        this.dashView.setVisible(true);
     }
 
     @Override
     public void editStudent(String name, String password) {
         this.model.editStudent(name, password);
-        view.setName(model.getStudent().name);
+        dashView.setName(model.getStudent().name);
     }
 
     @Override
@@ -131,8 +131,8 @@ public class studentController implements StudentInterface {
         if (bol) {
             model.setCurrStudent(student);
             System.out.println("controller " + student.name);
-            view.setName(student.name);
-            view.setVisible(true);
+            dashView.setName(student.name);
+            dashView.setVisible(true);
             loginView.close();
         } else {
             loginView.showErrorMessage();
@@ -148,7 +148,7 @@ public class studentController implements StudentInterface {
 
     @Override
     public void setIns(String ins) {
-        view.setInstruction(ins);
+        dashView.setInstruction(ins);
     }
 
     @Override

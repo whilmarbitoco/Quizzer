@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package student;
+package student.Views;
 
 import Core.Student;
 import javax.swing.JOptionPane;
@@ -12,14 +12,14 @@ import student.Interface.StudentInterface;
  *
  * @author wb2c0
  */
-public class editStudentDetails extends javax.swing.JDialog {
+public class editStudentView extends javax.swing.JDialog {
 
     /**
      * Creates new form editStudentDetails
      */
     private StudentInterface listener;
 
-    public editStudentDetails(java.awt.Frame parent, boolean modal, StudentInterface listener, Student student) {
+    public editStudentView(java.awt.Frame parent, boolean modal, StudentInterface listener, Student student) {
         super(parent, modal);
         initComponents();
         this.listener = listener;

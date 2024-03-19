@@ -4,9 +4,7 @@
  */
 package student;
 
-import student.Controller.studentController;
-import student.Model.studentModel;
-import student.socket.Client;
+import student.Controller.v2.studentController;
 
 /**
  *
@@ -15,11 +13,8 @@ import student.socket.Client;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("main");
-        studentModel model = new studentModel();
-        studentDashboard view = new studentDashboard();
-        loginStudent loginView = new loginStudent();
-        studentController controller = new studentController(model, view, loginView);
+
+        studentController controller = new studentController();
 
   
     }

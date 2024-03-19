@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package student;
+package student.Views;
 
 import javax.swing.JOptionPane;
 import student.Interface.StudentInterface;
@@ -11,13 +11,13 @@ import student.Interface.StudentInterface;
  *
  * @author wb2c0
  */
-public class loginStudent extends javax.swing.JFrame {
+public class loginStudentView extends javax.swing.JFrame {
 
     /**
      * Creates new form studentDashboard
      */
      private StudentInterface listener;
-    public loginStudent() {
+    public loginStudentView() {
          System.out.println("login");
         initComponents();
          

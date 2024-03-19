@@ -5,10 +5,10 @@
 package admin.views;
 
 import Core.Quiz;
-import admin.Interface.v2.adminInterface;
 import java.util.ArrayList;
 import java.util.UUID;
 import javax.swing.table.DefaultTableModel;
+import admin.Interface.AdminInterface;
 
 /**
  *
@@ -21,12 +21,12 @@ public class createQuizView extends javax.swing.JDialog {
      */
     
     UUID parentUUID;
-    adminInterface listener;
+    AdminInterface listener;
     DefaultTableModel model;
     int selectedRow;
 
     
-    public createQuizView(java.awt.Frame parent, boolean modal, adminInterface listener) {
+    public createQuizView(java.awt.Frame parent, boolean modal, AdminInterface listener) {
         super(parent, modal);
         initComponents();
         

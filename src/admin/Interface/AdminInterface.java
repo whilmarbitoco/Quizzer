@@ -4,8 +4,10 @@
  */
 package admin.Interface;
 
+import Core.Quiz;
 import Core.Student;
 import admin.socket.ServerHandler;
+import java.util.ArrayList;
 import java.util.UUID;
 
 /**
@@ -14,34 +16,60 @@ import java.util.UUID;
  */
 public interface AdminInterface {
     
-    void addStudent();
+    void openDashboard();
     
-    void addedStudent(String name, String email, String password);
+    void openStudents();
     
-    void searchStudent(UUID uuid);
-    
-    void deleteStudent(UUID uuid);
-    
-    void triggerEdit(UUID uuid);
-    
-    void editStudent(UUID uuid, String name, String email, String password);
-    
-    void searchByChar(String chars);
-    
-    void refresh();
-    
-    void addMultiQuiz(Object[] choices, String type, String question, String answer);
-    
-    void addEnumQuiz(String type, String question, String answer);
+    void openQuizzes();
     
     void adminLogin(String email, String password);
     
-    void broadcastQuiz();
+    void exit();
     
-    void studentLogin(ServerHandler server, String email, String password);
+    void close();
     
-    void addScore(Student student);
+    void openAddStudent();
+    
+    void addStudent(String name, String email, String password);
+    
+    void infoStudent(String id);
+    
+    void editStudent(UUID uuid, String header, String name, String email, String password);
+    
+    void saveEditStudent(UUID uuid, String name, String email, String password);
+    
+    void searchStudent(String chars);
+
+    void clearSearch();
+    
+    void addQuiz();
+    
+    void deleteQuiz(int id);
+    
+    void openAddQuiz();
+    
+    void addEnumeration(String question, String answer, int time, String type);
+    
+    void addMultipleChoice(String question, String answer, int time, String type, Object[] choices);
+    
+    void submitQList(String title, UUID parentUIID);
+    
+    void displaySelectedQuiz(String qName);
+    
+    void dispayMessage(String text);
+    
+    void clickSendQuiz(String name);
+    
     
     void adminCallTo(int choice);
     
-    }
+    void adminSignUp(String email, String name, String password);
+    
+    void studentLogin(ServerHandler handler, String email, String password);
+    
+    void addScore(Student student);
+    
+    void broadcast(String qName);
+    
+    void editAdmin(String email, String name, String password);
+}

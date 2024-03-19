@@ -2,20 +2,20 @@ package admin.socket;
 
 
 import Core.Packet;
-import admin.Interface.v2.adminInterface;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import admin.Interface.AdminInterface;
 
 public class Server implements Runnable{
 
     private ArrayList<ServerHandler> clients;
     private int port;
     ServerSocket server;
-    private adminInterface listener;
+    private AdminInterface listener;
 
-    public Server(adminInterface listener) {
+    public Server(AdminInterface listener) {
         this.port = 9901;
         this.clients = new ArrayList<>();
         this.listener = listener;

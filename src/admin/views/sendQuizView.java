@@ -4,8 +4,8 @@
  */
 package admin.views;
 
-import admin.Interface.v2.adminInterface;
 import javax.swing.JOptionPane;
+import admin.Interface.AdminInterface;
 
 /**
  *
@@ -16,8 +16,8 @@ public class sendQuizView extends javax.swing.JDialog {
     /**
      * Creates new form sendQuizView
      */
-    adminInterface listener;
-    public sendQuizView(java.awt.Frame parent, boolean modal, adminInterface listener) {
+    AdminInterface listener;
+    public sendQuizView(java.awt.Frame parent, boolean modal, AdminInterface listener) {
         super(parent, modal);
         initComponents();
         this.listener = listener;

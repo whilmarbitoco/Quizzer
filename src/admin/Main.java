@@ -4,8 +4,8 @@
  */
 package admin;
 
-import admin.Controller.v2.adminController;
-import admin.views.Dashboard;
+import admin.Controller.AdminController;
+import admin.views.DashboardView;
 
 /**
  *
@@ -15,8 +15,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Dashboard dashboard = new Dashboard();
-        adminController controller = new adminController(dashboard);
+        DashboardView dashboard = new DashboardView();
+        AdminController controller = new AdminController(dashboard);
 
     }
 

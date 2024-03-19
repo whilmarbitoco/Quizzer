@@ -2,20 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package admin;
-
-import admin.Controller.AdminController;
-import admin.views.DashboardView;
+package quizrandomizer;
 
 /**
  *
- * @author wb2c0
+ * @author hello
  */
 public class Main {
-
-    public static void main(String[] args) {      
-        AdminController controller = new AdminController();
-
+    public static void main(String[] args) {
+     Controller controller = new Controller();
+        
     }
-
 }

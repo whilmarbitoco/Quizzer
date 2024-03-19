@@ -71,7 +71,7 @@ public class AdminController implements AdminInterface {
 //    Socket
     Server server;
 
-    public AdminController(DashboardView dashView) {
+    public AdminController() {
         this.quizes = new ArrayList<>();
 
         this.logger = new Logger("admin.logs");
@@ -83,7 +83,7 @@ public class AdminController implements AdminInterface {
         this.quizlistModel = new quizListModel();
 
 //        Initialize views
-        this.dashView = dashView;
+        this.dashView = new DashboardView();
         this.dashView.setListener(this);
         this.dashView.setLocationRelativeTo(null);
 

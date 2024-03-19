@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import student.Interface.v2.studentInterface;
+import student.Interface.studentInterface;
 
 public class Client implements Runnable {
 

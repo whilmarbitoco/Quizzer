@@ -4,7 +4,7 @@
  */
 package student;
 
-import student.Controller.v2.studentController;
+import student.Controller.studentController;
 
 /**
  *

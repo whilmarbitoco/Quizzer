@@ -10,7 +10,7 @@ Follow these steps to get started with our project:
 
 2. **Clone this repo:** Clone your forked repository to your local machine using the following command:
     ```
-    git clone https://github.com/whilmarbitoco/CodeFusion
+    git clone https://github.com/<your name>/CodeFusion
     ```
 
 3. **Navigate to the repo directory:**

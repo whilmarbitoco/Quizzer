@@ -30,6 +30,7 @@ import admin.views.sendQuizView;
 import java.util.ArrayList;
 import java.util.UUID;
 import admin.Interface.AdminInterface;
+import java.net.Inet4Address;
 
 /**
  *
@@ -70,6 +71,8 @@ public class AdminController implements AdminInterface {
 
 //    Socket
     Server server;
+    String ip;
+    int port = 9901;
 
     public AdminController() {
         this.quizes = new ArrayList<>();
@@ -117,12 +120,22 @@ public class AdminController implements AdminInterface {
         this.mView = new messageView(null, true);
 
         this.adminProView = new adminProfileView(this);
+        this.adminProView.setLocationRelativeTo(null);
 
         auth();
         logger.log(currentAdmin.name, "Login");
         initialize();
 
-        this.server = new Server(this);
+        try {
+            Object host = Inet4Address.getLocalHost();
+            ip = String.valueOf(host).split("/")[1];
+            adminProView.setNetwork(ip, port);
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        this.server = new Server(port, this);
         Thread thread = new Thread(this.server);
         thread.start();
 
@@ -131,11 +144,11 @@ public class AdminController implements AdminInterface {
     public void initialize() {
         Object[] usercombo = {this.currentAdmin.name, "Settings", "Logout"};
         this.dashView.setStats(String.valueOf(this.studAdModel.getTotal()), "0", String.valueOf(this.quizModel.getTotal()));
-        
+
         this.dashView.setCombo(usercombo);
         this.studentView.setCombo(usercombo);
         this.quizView.setCombo(usercombo);
-        
+
         this.studentView.setTable(studAdModel.getAllStudents());
         this.createquizz.populate(this.quizes);
     }
@@ -202,7 +215,7 @@ public class AdminController implements AdminInterface {
 
     @Override
     public void close() {
-        
+
         if (!exit.value) {
             exit.close();
             return;

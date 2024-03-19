@@ -15,8 +15,8 @@ public class Server implements Runnable{
     ServerSocket server;
     private AdminInterface listener;
 
-    public Server(AdminInterface listener) {
-        this.port = 9901;
+    public Server(int port, AdminInterface listener) {
+        this.port = port;
         this.clients = new ArrayList<>();
         this.listener = listener;
     }

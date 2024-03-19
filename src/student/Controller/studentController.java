@@ -205,13 +205,14 @@ public class studentController implements studentInterface {
 
     @Override
     public void exit() {
+        confirmExit.setText("Do you really want to exit?");
+
         confirmExit.setVisible(true);
     }
 
     @Override
     public void closed() {
         if (!confirmExit.value) {
-            confirmExit.setText("Do you really want to exit?");
             confirmExit.close();
             return;
         }

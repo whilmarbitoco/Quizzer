@@ -5,6 +5,7 @@
 package quizrandomizer;
 
 import admin.Controller.AdminController;
+import student.Controller.studentController;
 
 /**
  *
@@ -31,6 +32,8 @@ public class Controller implements Interface {
 
     @Override
     public void callToUser() {
+        mainView.dispose();
+        studentController controller = new studentController();
 
     }
 

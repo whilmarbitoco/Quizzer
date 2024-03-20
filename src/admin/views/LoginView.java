@@ -107,7 +107,7 @@ public class LoginView extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 80));
@@ -183,7 +183,7 @@ public class LoginView extends javax.swing.JDialog {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jLabel7))
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         container.addTab("tab2", jPanel3);
@@ -265,7 +265,7 @@ public class LoginView extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(jLabel12))
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         container.addTab("tab1", jPanel2);
@@ -292,7 +292,11 @@ public class LoginView extends javax.swing.JDialog {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        listener.adminSignUp(signUpEmail.getText(), signUpUsername.getText(), signUpPassword.getText());
+        if (!signUpEmail.getText().isEmpty() && !signUpUsername.getText().isEmpty() && !signUpPassword.getText().isEmpty()) {
+             listener.adminSignUp(signUpEmail.getText(), signUpUsername.getText(), signUpPassword.getText());
+             return;
+        }
+        JOptionPane.showMessageDialog(this, "All fields must not be blank", "Empty Field", JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_jButton2ActionPerformed
 
 

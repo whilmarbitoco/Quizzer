@@ -182,7 +182,7 @@ public class addQuizView extends javax.swing.JDialog {
 
         jLabel1.setText("Quiz Type");
 
-        jLabel3.setText("Quiz Time");
+        jLabel3.setText("Quiz Time in Seconds");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

@@ -73,6 +73,8 @@ public class AdminController implements AdminInterface {
     Server server;
     String ip;
     int port = 9901;
+    
+    Thread thread;
 
     public AdminController() {
         this.quizes = new ArrayList<>();
@@ -136,7 +138,7 @@ public class AdminController implements AdminInterface {
         }
 
         this.server = new Server(port, this);
-        Thread thread = new Thread(this.server);
+        thread = new Thread(this.server);
         thread.start();
 
     }
@@ -420,5 +422,7 @@ public class AdminController implements AdminInterface {
         this.adminProView.setDetails(this.currentAdmin.email, this.currentAdmin.name, this.currentAdmin.password);
         this.initialize();
     }
+
+
 
 }

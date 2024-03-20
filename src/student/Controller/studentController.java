@@ -40,9 +40,13 @@ public class studentController implements studentInterface {
 //    Variables
     boolean isLoggedIn = false;
     boolean answered = false;
-
+    boolean isServerOnline = false;
+    
 //    Network
     Client client;
+    String host = "127.0.0.1";
+    int port = 9901;
+    Thread thread;
 
     public studentController() {
         login = new loginView(this);
@@ -58,17 +62,17 @@ public class studentController implements studentInterface {
         netView.setLocationRelativeTo(null);
 
         confirmExit = new confirmDialogView(dashboard, true);
-        confirmExit.setLocationRelativeTo(dashboard);
         confirmExit.studentListener(this);
+        confirmExit.setLocationRelativeTo(dashboard);
 
         studentmodel = new studentModel();
 
-        this.client = new Client("127.0.0.1", 9901, this);
-        Thread thread = new Thread(this.client);
-        thread.start();
+        this.client = new Client(this.host, this.port, this);
+        thread = new Thread(this.client);
+        
 
         auth();
-
+        
     }
 
     public void auth() {
@@ -86,9 +90,20 @@ public class studentController implements studentInterface {
         client.sendMessage(packet);
 
     }
+    
+    public void startServer() {
+        if (!isServerOnline) {
+            thread.start();
+            isServerOnline  = true;
+            return;
+        }
+        
+        
+    }
 
     @Override
     public void onLogin(String email, String password) {
+        startServer();
         Packet packet = new Packet(null, "Login", "Server", null);
         packet.email = email;
         packet.password = password;
@@ -115,7 +130,11 @@ public class studentController implements studentInterface {
 
     @Override
     public void setNetwork(String host, int port) {
-
+        this.host = host;
+        this.port = port;
+        
+       startServer();
+        netView.setVisible(false);
     }
 
     @Override

@@ -72,4 +72,6 @@ public interface AdminInterface {
     void broadcast(String qName);
     
     void editAdmin(String email, String name, String password);
+    
+   
 }

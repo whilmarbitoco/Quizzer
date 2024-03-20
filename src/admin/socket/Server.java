@@ -44,6 +44,10 @@ public class Server implements Runnable{
            close();
        }
     }
+    
+    public void setPort(int port) {
+        this.port = port;
+    }
 
     public void broadcast(Packet packet) {
         for (ServerHandler sh : clients) {

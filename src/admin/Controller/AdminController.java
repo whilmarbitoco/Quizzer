@@ -306,11 +306,20 @@ public class AdminController implements AdminInterface {
     @Override
     public void submitQList(String title, UUID parentUUID) {
 
-        quizlistModel.addQuiz(this.quizes, parentUUID, title);
+        ArrayList<Quiz> tmp = quizlistModel.getQuizByName(title);
+        
+        if (tmp == null) {
+            quizlistModel.addQuiz(this.quizes, parentUUID, title);
         quizView.setQuizes(quizlistModel.getList());
 
         this.quizes = new ArrayList<>();
         this.initialize();
+        this.createquizz.successMessage();
+        this.createquizz.dispose();
+        return;
+        }
+        
+        this.createquizz.errorMessage();
     }
 
     @Override

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 import javax.swing.table.DefaultTableModel;
 import admin.Interface.AdminInterface;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -234,6 +235,14 @@ public class createQuizView extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_qTitleFocusLost
 
+    public void successMessage() {
+        JOptionPane.showMessageDialog(this, "Successfully added Quiz", "Quiz Added", JOptionPane.INFORMATION_MESSAGE);
+    }
+    
+    public void errorMessage() {
+        JOptionPane.showMessageDialog(this, "Quiz Already Exist", "Name Duplication", JOptionPane.ERROR_MESSAGE);
+    }
+    
     private void jScrollPane2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane2MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jScrollPane2MouseClicked
@@ -245,10 +254,14 @@ public class createQuizView extends javax.swing.JDialog {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        
         int selectedID = (int) table.getValueAt(selectedRow, 0);
         
-        this.listener.deleteQuiz(selectedID);
+        int choice = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this quiz?", "Confirm Delete", JOptionPane.CANCEL_OPTION);
+        
+        if (choice == 0) {
+            this.listener.deleteQuiz(selectedID);
+        }
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -259,7 +272,6 @@ public class createQuizView extends javax.swing.JDialog {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         this.listener.submitQList(qTitle.getText(), parentUUID);
-        dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

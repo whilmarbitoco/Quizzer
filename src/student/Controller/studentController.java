@@ -63,7 +63,7 @@ public class studentController implements studentInterface {
 
         confirmExit = new confirmDialogView(dashboard, true);
         confirmExit.studentListener(this);
-        confirmExit.setLocationRelativeTo(dashboard);
+        confirmExit.setLocationRelativeTo(dashboard );
 
         studentmodel = new studentModel();
 

@@ -62,6 +62,9 @@ public class quizListModel {
      return false;   
     }
     
+       public int getSize() {
+           return this.quizes.size();
+       }
     
     
     

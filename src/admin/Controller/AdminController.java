@@ -145,7 +145,7 @@ public class AdminController implements AdminInterface {
 
     public void initialize() {
         Object[] usercombo = {this.currentAdmin.name, "Settings", "Logout"};
-        this.dashView.setStats(String.valueOf(this.studAdModel.getTotal()), "0", String.valueOf(this.quizModel.getTotal()));
+        this.dashView.setStats(String.valueOf(this.studAdModel.getTotal()), "0", String.valueOf(this.quizlistModel.getSize()));
 
         this.dashView.setCombo(usercombo);
         this.studentView.setCombo(usercombo);
@@ -310,7 +310,7 @@ public class AdminController implements AdminInterface {
         quizView.setQuizes(quizlistModel.getList());
 
         this.quizes = new ArrayList<>();
-//        this.quizes.clear();
+        this.initialize();
     }
 
     @Override

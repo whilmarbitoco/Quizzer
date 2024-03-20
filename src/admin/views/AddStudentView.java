@@ -7,6 +7,7 @@ package admin.views;
 import admin.*;
 import java.util.UUID;
 import admin.Interface.AdminInterface;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -179,11 +180,12 @@ public class AddStudentView extends javax.swing.JDialog {
         if (!isEdit) {
 //            System.out.println("adminadd" + fullname.getText() + email.getText() + password.getText());
             listener.addStudent(fullname.getText(), email.getText(), password.getText());
-            
+            JOptionPane.showMessageDialog(this, "Successfully Added", "Student Added", JOptionPane.INFORMATION_MESSAGE);
             dispose();
         }
          else {
             listener.saveEditStudent(this.uuid, fullname.getText(), email.getText(), password.getText());
+            JOptionPane.showMessageDialog(this, "Successfully Edited", "Edit Successful", JOptionPane.INFORMATION_MESSAGE);
             dispose();
         }
         

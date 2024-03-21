@@ -73,7 +73,7 @@ public class AdminController implements AdminInterface {
     Server server;
     String ip;
     int port = 9901;
-    
+
     Thread thread;
 
     public AdminController() {
@@ -132,7 +132,7 @@ public class AdminController implements AdminInterface {
             Object host = Inet4Address.getLocalHost();
             ip = String.valueOf(host).split("/")[1];
             adminProView.setNetwork(ip, port);
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -240,8 +240,6 @@ public class AdminController implements AdminInterface {
 
     @Override
     public void infoStudent(String id) {
-        System.out.println(id);
-
         Student student = studAdModel.getByUUID(UUID.fromString(id));
         infoView.setInfo(student);
         infoView.setVisible(true);
@@ -307,18 +305,18 @@ public class AdminController implements AdminInterface {
     public void submitQList(String title, UUID parentUUID) {
 
         ArrayList<Quiz> tmp = quizlistModel.getQuizByName(title);
-        
+
         if (tmp == null) {
             quizlistModel.addQuiz(this.quizes, parentUUID, title);
-        quizView.setQuizes(quizlistModel.getList());
+            quizView.setQuizes(quizlistModel.getList());
 
-        this.quizes = new ArrayList<>();
-        this.initialize();
-        this.createquizz.successMessage();
-        this.createquizz.dispose();
-        return;
+            this.quizes = new ArrayList<>();
+            this.initialize();
+            this.createquizz.successMessage();
+            this.createquizz.dispose();
+            return;
         }
-        
+
         this.createquizz.errorMessage();
     }
 
@@ -337,7 +335,6 @@ public class AdminController implements AdminInterface {
         Quiz tmp = new Quiz(time, question, answer, type, id, choices);
 
         this.quizes.add(tmp);
-//        quizModel.addQuiz(tmp);
         initialize();
 
     }
@@ -406,7 +403,6 @@ public class AdminController implements AdminInterface {
 
     @Override
     public void addScore(Student student) {
-        System.out.println("ok");
         this.dashView.setStudents(student.email, student.name, student.score);
     }
 
@@ -431,7 +427,5 @@ public class AdminController implements AdminInterface {
         this.adminProView.setDetails(this.currentAdmin.email, this.currentAdmin.name, this.currentAdmin.password);
         this.initialize();
     }
-
-
 
 }

@@ -24,11 +24,11 @@ public class adminModel {
     
     public boolean auth(String email, String password) {
         
-        for (int i = 0; i < admins.size(); i++) {
-            if (admins.get(i).email.equalsIgnoreCase(email) && admins.get(i).password.equalsIgnoreCase(password)) {
+        for (Admin admin : this.admins) {
+            if (admin.email.equalsIgnoreCase(email) && admin.password.equalsIgnoreCase(password)) {
                 return true;
             }
-        }       
+        }
         return false;
     }
     

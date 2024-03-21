@@ -51,6 +51,7 @@ public class studentAdminModel {
                 this.students.set(i, new Student(uuid, name, email, password));
             }
         }
+
     }
 
     public ArrayList<Student> searchByChar(String chars) {
@@ -76,16 +77,15 @@ public class studentAdminModel {
     }
 
     public void addStudent(String name, String email, String password) {
-        UUID uuid = UUID.randomUUID();
+        UUID uuid = UUID.randomUUID();nb  
         students.add(new Student(uuid, name, email, password));
 
     }
 
     public Student auth(String email, String password) {
-
-        for (int i = 0; i < students.size(); i++) {
-            if (students.get(i).email.equalsIgnoreCase(email) && students.get(i).password.equalsIgnoreCase(password)) {
-                return students.get(i);
+        for (Student student : this.students) {
+            if (student.email.equalsIgnoreCase(email) && student.password.equalsIgnoreCase(password)) {
+                return student;
             }
         }
 

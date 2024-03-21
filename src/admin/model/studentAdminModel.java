@@ -77,7 +77,7 @@ public class studentAdminModel {
     }
 
     public void addStudent(String name, String email, String password) {
-        UUID uuid = UUID.randomUUID();nb  
+        UUID uuid = UUID.randomUUID();
         students.add(new Student(uuid, name, email, password));
 
     }

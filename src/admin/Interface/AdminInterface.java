@@ -48,7 +48,7 @@ public interface AdminInterface {
     
     void openAddQuiz();
     
-    void addEnumeration(String question, String answer, int time, String type);
+    void addIdentification(String question, String answer, int time, String type);
     
     void addMultipleChoice(String question, String answer, int time, String type, Object[] choices);
     

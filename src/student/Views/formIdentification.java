@@ -13,7 +13,7 @@ import student.Interface.studentInterface;
  *
  * @author wb2c0
  */
-public class formEnumeration extends javax.swing.JDialog {
+public class formIdentification extends javax.swing.JDialog {
 
     /**
      * Creates new form formMultipleChoice
@@ -22,7 +22,7 @@ public class formEnumeration extends javax.swing.JDialog {
     private String ans;
     private int time = 15;
 
-    public formEnumeration(java.awt.Frame parent, boolean modal, String ans, String question, int time,studentInterface listener) {
+    public formIdentification(java.awt.Frame parent, boolean modal, String ans, String question, int time,studentInterface listener) {
         super(parent, modal);
         initComponents();
         this.question.setText(question);
@@ -136,10 +136,10 @@ public class formEnumeration extends javax.swing.JDialog {
                 .addComponent(answer, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(51, 51, 51)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 360, 370));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 360, 380));
 
         jPanel1.setBackground(new java.awt.Color(0, 51, 255));
 

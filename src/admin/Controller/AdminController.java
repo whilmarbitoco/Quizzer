@@ -292,7 +292,7 @@ public class AdminController implements AdminInterface {
     }
 
     @Override
-    public void addEnumeration(String question, String answer, int time, String type) {
+    public void addIdentification(String question, String answer, int time, String type) {
 
         int id = (int) (Math.random() * Integer.MAX_VALUE);
         Quiz tmp = new Quiz(time, question, answer, type, id);

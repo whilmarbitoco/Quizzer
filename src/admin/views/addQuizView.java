@@ -102,7 +102,7 @@ public class addQuizView extends javax.swing.JDialog {
             }
         });
 
-        qType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Multiple Choice", "Enumeration" }));
+        qType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Multiple Choice", "Identification" }));
         qType.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 qTypeMouseClicked(evt);
@@ -300,7 +300,7 @@ public class addQuizView extends javax.swing.JDialog {
 
         System.out.println(type);
 
-        if (type.equalsIgnoreCase("Enumeration")) {
+        if (type.equalsIgnoreCase("Identification")) {
             jPanel2.setVisible(false);
         } else {
             jPanel2.setVisible(true);
@@ -311,8 +311,8 @@ public class addQuizView extends javax.swing.JDialog {
         // TODO add your handling code here:
         try {
             
-            if (type.equalsIgnoreCase("Enumeration")) {
-                this.listener.addEnumeration(question.getText(), answer.getText(), Integer.parseInt(time.getText()), type);
+            if (type.equalsIgnoreCase("Identification")) {
+                this.listener.addIdentification(question.getText(), answer.getText(), Integer.parseInt(time.getText()), type);
             } else if (type.equalsIgnoreCase("Multiple Choice")) {
                 this.listener.addMultipleChoice(question.getText(), answer.getText(), Integer.parseInt(time.getText()), type, choices);
             }

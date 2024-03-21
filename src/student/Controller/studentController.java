@@ -14,7 +14,7 @@ import student.Model.studentModel;
 import student.Views.DashboardView;
 import student.Views.DisplayScore;
 import student.Views.editView;
-import student.Views.formEnumeration;
+import student.Views.formIdentification;
 import student.Views.formMultipleChoice;
 import student.Views.loginView;
 import student.Views.networkSettingsView;
@@ -149,10 +149,10 @@ public class studentController implements studentInterface {
         ArrayList<Quiz> quizes = this.studentmodel.getQuizes();
 
         for (Quiz quiz : quizes) {
-            if (quiz.type.equals("Enumeration")) {
-                formEnumeration enumeration = new formEnumeration(dashboard, true, quiz.answer, quiz.question, quiz.time, this);
-                enumeration.setLocationRelativeTo(null);
-                enumeration.setVisible(true);
+            if (quiz.type.equals("Identification")) {
+                formIdentification identification = new formIdentification(dashboard, true, quiz.answer, quiz.question, quiz.time, this);
+                identification.setLocationRelativeTo(null);
+                identification.setVisible(true);
             } else if (quiz.type.equals("Multiple Choice")) {
                 formMultipleChoice multipleChoice = new formMultipleChoice(dashboard, true, quiz.answer, quiz.question, quiz.time, quiz.choices, this);
                 multipleChoice.setLocationRelativeTo(null);
@@ -161,7 +161,7 @@ public class studentController implements studentInterface {
         }
 
         sendScore();
-        DisplayScore score = new DisplayScore(dashboard, true, String.valueOf(studentmodel.getScore()));
+        DisplayScore score = new DisplayScore(dashboard, true, String.valueOf(studentmodel.getScore()), String.valueOf(studentmodel.getQuizes().size()));
         score.setLocationRelativeTo(null);
         score.setVisible(true);
         dashboard.setVisible(true);

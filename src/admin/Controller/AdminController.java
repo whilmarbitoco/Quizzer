@@ -415,6 +415,8 @@ public class AdminController implements AdminInterface {
             packet.instruction = name;
 
             server.broadcast(packet);
+//            server.setQuiz(packet);
+            
             quizlistModel.setAnswered(this.qName);
             this.quizView.setStatus(quizlistModel.getStatus(this.qName));
         }

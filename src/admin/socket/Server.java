@@ -14,6 +14,7 @@ public class Server implements Runnable{
     private int port;
     ServerSocket server;
     private AdminInterface listener;
+    Packet tmp_packet;
 
     public Server(int port, AdminInterface listener) {
         this.port = port;
@@ -33,8 +34,13 @@ public class Server implements Runnable{
 
                ServerHandler handler = new ServerHandler(socket, this.listener);
                 clients.add(handler);
+                                
                Thread thread = new Thread(handler);
                thread.start();
+               
+//                   if (tmp_packet != null) {
+//                   handler.sendMessage(tmp_packet);
+//               }
 
 
            }
@@ -43,6 +49,10 @@ public class Server implements Runnable{
            e.printStackTrace();
            close();
        }
+    }
+    
+    public void setQuiz(Packet packet) {
+        this.tmp_packet = packet;
     }
     
     public void setPort(int port) {

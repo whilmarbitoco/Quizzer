@@ -236,8 +236,18 @@ public class AdminController implements AdminInterface {
 
     @Override
     public void addStudent(String name, String email, String password) {
-        studAdModel.addStudent(name, email, password);
-        initialize();
+        boolean tmp = studAdModel.checkStudentByEmail(email);
+        
+        if (!tmp) {
+            studAdModel.addStudent(name, email, password);
+            addStuView.showSuccess();
+            addStuView.dispose();
+            initialize();
+            return;
+        }
+        
+        addStuView.showStudentExist();
+        
     }
 
     @Override

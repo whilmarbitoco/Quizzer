@@ -76,6 +76,17 @@ public class studentAdminModel {
 
     }
 
+    public boolean checkStudentByEmail(String email) {
+        for (Student s : this.students) {
+            if (s.email.equalsIgnoreCase(email)) {
+                return true;
+            }
+
+        }
+
+        return false;
+    }
+
     public void addStudent(String name, String email, String password) {
         UUID uuid = UUID.randomUUID();
         students.add(new Student(uuid, name, email, password));

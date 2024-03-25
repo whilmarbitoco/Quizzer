@@ -37,6 +37,13 @@ public class AddStudentView extends javax.swing.JDialog {
         this.isEdit = true;
     }
 
+    public void showStudentExist() {
+     JOptionPane.showMessageDialog(this, "Student with that email already exist", "Email Exist", JOptionPane.ERROR_MESSAGE);
+    }
+    
+    public void showSuccess() {
+        JOptionPane.showMessageDialog(this, "Successfully Added", "Student Added", JOptionPane.INFORMATION_MESSAGE);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -155,7 +162,7 @@ public class AddStudentView extends javax.swing.JDialog {
                 .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 340, 520));
@@ -180,8 +187,6 @@ public class AddStudentView extends javax.swing.JDialog {
         if (!isEdit) {
 //            System.out.println("adminadd" + fullname.getText() + email.getText() + password.getText());
             listener.addStudent(fullname.getText(), email.getText(), password.getText());
-            JOptionPane.showMessageDialog(this, "Successfully Added", "Student Added", JOptionPane.INFORMATION_MESSAGE);
-            dispose();
         }
          else {
             listener.saveEditStudent(this.uuid, fullname.getText(), email.getText(), password.getText());

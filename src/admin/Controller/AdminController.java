@@ -62,6 +62,8 @@ public class AdminController implements AdminInterface {
     boolean isLoggedIn = false;
     Admin currentAdmin;
     String qName;
+    boolean isQuizSent = false;
+    Packet send_quiz;
 
 //    tmp_array
     ArrayList<Quiz> quizes;
@@ -415,7 +417,8 @@ public class AdminController implements AdminInterface {
             packet.instruction = name;
 
             server.broadcast(packet);
-//            server.setQuiz(packet);
+            isQuizSent = true;
+            this.send_quiz = packet;
             
             quizlistModel.setAnswered(this.qName);
             this.quizView.setStatus(quizlistModel.getStatus(this.qName));
@@ -429,5 +432,15 @@ public class AdminController implements AdminInterface {
         this.adminProView.setDetails(this.currentAdmin.email, this.currentAdmin.name, this.currentAdmin.password);
         this.initialize();
     }
+
+    @Override
+    public void informConnection(ServerHandler handler) {
+        if (isQuizSent) {
+            server.sendOneMessage(handler, this.send_quiz);
+        }
+    }
+
+
+    
 
 }

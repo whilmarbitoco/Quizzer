@@ -1,6 +1,5 @@
 package admin.socket;
 
-
 import Core.Packet;
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -8,13 +7,13 @@ import java.net.Socket;
 import java.util.ArrayList;
 import admin.Interface.AdminInterface;
 
-public class Server implements Runnable{
+public class Server implements Runnable {
 
     private ArrayList<ServerHandler> clients;
     private int port;
     ServerSocket server;
     private AdminInterface listener;
-    Packet tmp_packet;
+   
 
     public Server(int port, AdminInterface listener) {
         this.port = port;
@@ -23,38 +22,33 @@ public class Server implements Runnable{
     }
 
     @Override
-    public void run(){
+    public void run() {
+  
+        try {
+            server = new ServerSocket(this.port);
+            System.out.println("Server running on port " + this.port);
 
-       try {
-           server = new ServerSocket(this.port);
-           System.out.println("Server running on port " + this.port);
+            while (!server.isClosed()) {
+                Socket socket = server.accept();
 
-           while (!server.isClosed()) {
-               Socket socket = server.accept();
-
-               ServerHandler handler = new ServerHandler(socket, this.listener);
+                ServerHandler handler = new ServerHandler(socket, this.listener);
                 clients.add(handler);
-                                
-               Thread thread = new Thread(handler);
-               thread.start();
-               
-//                   if (tmp_packet != null) {
-//                   handler.sendMessage(tmp_packet);
-//               }
 
+                Thread thread = new Thread(handler);
+                thread.start();
+                
+              
+                
+                this.listener.informConnection(handler);
 
-           }
+            }
 
-       } catch (Exception e) {
-           e.printStackTrace();
-           close();
-       }
+        } catch (Exception e) {
+            e.printStackTrace();
+            close();
+        }
     }
-    
-    public void setQuiz(Packet packet) {
-        this.tmp_packet = packet;
-    }
-    
+
     public void setPort(int port) {
         this.port = port;
     }
@@ -64,12 +58,12 @@ public class Server implements Runnable{
             sh.sendMessage(packet);
         }
     }
-    
-    public void sendOneMessage(ServerHandler server, Packet packet)  {
-         for (ServerHandler sh : clients) {
-             if (sh == server) {
+
+    public void sendOneMessage(ServerHandler server, Packet packet) {
+        for (ServerHandler sh : clients) {
+            if (sh == server) {
                 sh.sendMessage(packet);
-             }
+            }
         }
     }
 

@@ -4,6 +4,7 @@
  */
 package admin.Interface;
 
+import Core.Packet;
 import Core.Quiz;
 import Core.Student;
 import admin.socket.ServerHandler;
@@ -73,5 +74,5 @@ public interface AdminInterface {
     
     void editAdmin(String email, String name, String password);
     
-   
+   void informConnection(ServerHandler handler);
 }

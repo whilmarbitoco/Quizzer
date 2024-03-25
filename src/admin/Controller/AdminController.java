@@ -199,6 +199,7 @@ public class AdminController implements AdminInterface {
         boolean auth = adModel.auth(email, password);
 
         if (auth) {
+            this.login.loginSuccess();
             this.dashView.setVisible(true);
             this.login.close();
             this.currentAdmin = this.adModel.getByEmail(email);
@@ -394,7 +395,7 @@ public class AdminController implements AdminInterface {
         }
 
         this.adModel.addAdmin(email, name, password);
-        this.login.loginSuccess();
+        this.login.signupSuccess();
     }
 
     @Override

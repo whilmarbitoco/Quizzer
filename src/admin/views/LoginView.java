@@ -37,6 +37,10 @@ public class LoginView extends javax.swing.JDialog {
     }
    
     public void loginSuccess() {
+        JOptionPane.showMessageDialog(this, "Login Successfully", "Login Success", JOptionPane.INFORMATION_MESSAGE);
+    }
+    
+    public void signupSuccess() {
         JOptionPane.showMessageDialog(this, "Sign Up Successful", "Success", JOptionPane.INFORMATION_MESSAGE);
         container.setSelectedIndex(0);
     }

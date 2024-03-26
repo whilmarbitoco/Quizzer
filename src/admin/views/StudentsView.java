@@ -217,7 +217,7 @@ public class StudentsView extends javax.swing.JFrame {
         });
 
         searchBtn.setBackground(new java.awt.Color(204, 204, 0));
-        searchBtn.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
+        searchBtn.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
         searchBtn.setForeground(new java.awt.Color(255, 255, 255));
         searchBtn.setText("Search");
         searchBtn.addActionListener(new java.awt.event.ActionListener() {

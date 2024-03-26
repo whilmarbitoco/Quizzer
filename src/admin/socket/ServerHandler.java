@@ -49,6 +49,11 @@ public class ServerHandler implements Runnable {
                     Student tmp = clientMsg.student;
                     this.listener.saveEditStudent(tmp.id, tmp.name, tmp.email, tmp.password);
                 }
+                
+                if (clientMsg.message.equals("0xDisconnect")) {
+                    System.out.println("admin.socket.ServerHandler.run()");
+                    this.listener.clientDisconnect(clientMsg.student);
+                }
             }
         } catch (IOException | ClassNotFoundException e) {
             close();

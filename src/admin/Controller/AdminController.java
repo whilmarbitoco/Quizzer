@@ -67,6 +67,7 @@ public class AdminController implements AdminInterface {
 
 //    tmp_array
     ArrayList<Quiz> quizes;
+    ArrayList<Student> loginStudents;
 
 //    funcs
     Logger logger;
@@ -80,6 +81,7 @@ public class AdminController implements AdminInterface {
 
     public AdminController() {
         this.quizes = new ArrayList<>();
+        this.loginStudents = new ArrayList<>();
 
         this.logger = new Logger("admin.logs");
 
@@ -155,6 +157,7 @@ public class AdminController implements AdminInterface {
 
         this.studentView.setTable(studAdModel.getAllStudents());
         this.createquizz.populate(this.quizes);
+        this.dashView.setBarStatus(studAdModel.getTotal(), this.loginStudents.size());
     }
 
     public void auth() {
@@ -407,6 +410,11 @@ public class AdminController implements AdminInterface {
             packet.auth = true;
             packet.student = auth;
             this.server.sendOneMessage(handler, packet);
+            
+            this.loginStudents.add(auth);
+            
+            this.dashView.addNewLoginStudent(this.loginStudents);
+            initialize();
         } else {
             packet.auth = false;
             packet.message = "x0FailedLogin";
@@ -451,7 +459,18 @@ public class AdminController implements AdminInterface {
         }
     }
 
-
+    @Override
+    public void clientDisconnect(Student student) {
+        for (Student s : this.loginStudents) {
+            if (s.id.equals(student.id)) {
+                System.out.println("Student found");
+                this.loginStudents.remove(s);
+                initialize();
+                break;
+            }
+        }
+        
+    }
     
 
 }

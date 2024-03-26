@@ -215,7 +215,7 @@ public class studentController implements studentInterface {
                 break;
 
             case 2:
-                System.exit(0);
+                exit();
                 break;
 
         }
@@ -250,7 +250,11 @@ public class studentController implements studentInterface {
             confirmExit.close();
             return;
         }
-
+        Packet packet = new Packet(null, "0xDisconnect", "Server", "Client");
+        packet.student = studentmodel.getStudent();
+        client.sendMessage(packet);
+        System.out.println("client goooo");
+        
         System.exit(0);
     }
 

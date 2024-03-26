@@ -75,4 +75,6 @@ public interface AdminInterface {
     void editAdmin(String email, String name, String password);
     
    void informConnection(ServerHandler handler);
+   
+   void clientDisconnect(Student student);
 }

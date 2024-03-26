@@ -158,6 +158,7 @@ public class AdminController implements AdminInterface {
         this.studentView.setTable(studAdModel.getAllStudents());
         this.createquizz.populate(this.quizes);
         this.dashView.setBarStatus(studAdModel.getTotal(), this.loginStudents.size());
+        this.dashView.addNewLoginStudent(this.loginStudents);
     }
 
     public void auth() {
@@ -431,7 +432,7 @@ public class AdminController implements AdminInterface {
 
             this.loginStudents.add(auth);
 
-            this.dashView.addNewLoginStudent(this.loginStudents);
+            
             initialize();
             
         } else {

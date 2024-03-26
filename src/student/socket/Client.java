@@ -17,10 +17,15 @@ public class Client implements Runnable {
     public ObjectInputStream in;
     public studentInterface listener;
 
-    public Client(String host, int port, studentInterface listener) {
+    public Client(studentInterface listener) {
+//        this.host = host;
+//        this.port = port;
+        this.listener = listener;
+    }
+    
+    public void setNetwork(String host, int port) {
         this.host = host;
         this.port = port;
-        this.listener = listener;
     }
 
     @Override
@@ -52,7 +57,7 @@ public class Client implements Runnable {
             }
 
         } catch (IOException | ClassNotFoundException e) {
-            System.out.println("Server Disconnected");
+            System.out.println(e);
         }
     }
 

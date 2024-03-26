@@ -45,8 +45,6 @@ public class studentController implements studentInterface {
 
 //    Network
     Client client;
-    String host = "127.0.0.1";
-    int port = 9901;
     Thread thread;
 
     public studentController() {
@@ -68,7 +66,7 @@ public class studentController implements studentInterface {
 
         studentmodel = new studentModel();
 
-        this.client = new Client(this.host, this.port, this);
+        this.client = new Client(this);
         thread = new Thread(this.client);
 
         auth();
@@ -130,9 +128,9 @@ public class studentController implements studentInterface {
 
     @Override
     public void setNetwork(String host, int port) {
-        this.host = host;
-        this.port = port;
-
+    
+        client.setNetwork(host, port);
+        System.out.println(host + " " +  port);
         startServer();
         netView.setVisible(false);
     }

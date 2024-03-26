@@ -42,4 +42,6 @@ public interface studentInterface {
     void closed();
     
     void skipQuiz(Quiz quiz);
+    
+    void alreadyLogin();
 }

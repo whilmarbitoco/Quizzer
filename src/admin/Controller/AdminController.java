@@ -174,6 +174,15 @@ public class AdminController implements AdminInterface {
 
     }
 
+    public boolean checkLogins(UUID uuid) {
+        for (Student s : this.loginStudents) {
+            if (s.id.equals(uuid)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public void openDashboard() {
         this.studentView.setVisible(false);
@@ -241,7 +250,7 @@ public class AdminController implements AdminInterface {
     @Override
     public void addStudent(String name, String email, String password) {
         boolean tmp = studAdModel.checkStudentByEmail(email);
-        
+
         if (!tmp) {
             studAdModel.addStudent(name, email, password);
             addStuView.showSuccess();
@@ -249,9 +258,9 @@ public class AdminController implements AdminInterface {
             initialize();
             return;
         }
-        
+
         addStuView.showStudentExist();
-        
+
     }
 
     @Override
@@ -404,20 +413,30 @@ public class AdminController implements AdminInterface {
     @Override
     public void studentLogin(ServerHandler handler, String email, String password) {
         Student auth = studAdModel.auth(email, password);
-        Packet packet = new Packet(null, "Login Authorize", null, "Server");
+        Packet packet = new Packet(null, "x0FailedLogin", null, "Server");
 
         if (auth != null) {
+
+            if (checkLogins(auth.id)) {
+                packet.auth = false;
+                packet.message = "0xAlreadyLogin";
+                this.server.sendOneMessage(handler, packet);
+                return;
+            }
+            
+            packet.message = "Login Authorize";
             packet.auth = true;
             packet.student = auth;
             this.server.sendOneMessage(handler, packet);
-            
+
             this.loginStudents.add(auth);
-            
+
             this.dashView.addNewLoginStudent(this.loginStudents);
             initialize();
+            
         } else {
             packet.auth = false;
-            packet.message = "x0FailedLogin";
+//            packet.message = "";
             this.server.sendOneMessage(handler, packet);
         }
     }
@@ -438,7 +457,7 @@ public class AdminController implements AdminInterface {
             server.broadcast(packet);
             isQuizSent = true;
             this.send_quiz = packet;
-            
+
             quizlistModel.setAnswered(this.qName);
             this.quizView.setStatus(quizlistModel.getStatus(this.qName));
         }
@@ -469,8 +488,7 @@ public class AdminController implements AdminInterface {
                 break;
             }
         }
-        
+
     }
-    
 
 }

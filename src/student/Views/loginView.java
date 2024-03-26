@@ -36,6 +36,10 @@ public class loginView extends javax.swing.JFrame {
     public void showLoginSuccess() {
         JOptionPane.showMessageDialog(rootPane, "Login Successfully", "Login Success", JOptionPane.INFORMATION_MESSAGE);
     }
+    
+    public void showAlreadyLogin() {
+        JOptionPane.showMessageDialog(rootPane, "This user is already login", "Login Failed", JOptionPane.ERROR_MESSAGE);
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

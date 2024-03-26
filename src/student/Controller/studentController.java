@@ -263,4 +263,9 @@ public class studentController implements studentInterface {
         this.skipQuiz.add(quiz);
     }
 
+    @Override
+    public void alreadyLogin() {
+       this.login.showAlreadyLogin();
+    }
+
 }

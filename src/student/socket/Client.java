@@ -44,6 +44,10 @@ public class Client implements Runnable {
                     this.listener.setQuiz(recPacket.quizes);
                     this.listener.setIns(recPacket.instruction);
                 }
+                
+                if (recPacket.message.equals("0xAlreadyLogin")) {
+                    this.listener.alreadyLogin();
+                }
 
             }
 

@@ -64,6 +64,7 @@ public class AdminController implements AdminInterface {
     String qName;
     boolean isQuizSent = false;
     Packet send_quiz;
+    int totalAnswered = 0;
 
 //    tmp_array
     ArrayList<Quiz> quizes;
@@ -149,7 +150,7 @@ public class AdminController implements AdminInterface {
 
     public void initialize() {
         Object[] usercombo = {this.currentAdmin.name, "Settings", "Logout"};
-        this.dashView.setStats(String.valueOf(this.studAdModel.getTotal()), "0", String.valueOf(this.quizlistModel.getSize()));
+        this.dashView.setStats(String.valueOf(this.studAdModel.getTotal()), String.valueOf(totalAnswered), String.valueOf(this.quizlistModel.getSize()));
 
         this.dashView.setCombo(usercombo);
         this.studentView.setCombo(usercombo);
@@ -444,7 +445,9 @@ public class AdminController implements AdminInterface {
 
     @Override
     public void addScore(Student student) {
+        this.totalAnswered++;
         this.dashView.setStudents(student.email, student.name, student.score);
+        this.initialize();
     }
 
     @Override
@@ -491,5 +494,11 @@ public class AdminController implements AdminInterface {
         }
 
     }
+
+    @Override
+    public void deleteStudent(UUID uuid) {
+        studAdModel.delteByUUID(uuid);
+        initialize();
+       }
 
 }

@@ -5,7 +5,10 @@
         <group>
             <file>file:/home/wb2c0/NetBeansProjects/CodeFusion/src/student/Controller/studentController.java</file>
             <file>file:/home/wb2c0/NetBeansProjects/CodeFusion/src/admin/views/LoginView.java</file>
+            <file>file:/home/wb2c0/NetBeansProjects/CodeFusion/src/admin/socket/ServerHandler.java</file>
+            <file>file:/home/wb2c0/NetBeansProjects/CodeFusion/src/admin/Interface/AdminInterface.java</file>
             <file>file:/home/wb2c0/NetBeansProjects/CodeFusion/src/admin/views/DashboardView.java</file>
+            <file>file:/home/wb2c0/NetBeansProjects/CodeFusion/src/admin/views/StudentsView.java</file>
             <file>file:/home/wb2c0/NetBeansProjects/CodeFusion/src/admin/Controller/AdminController.java</file>
             <file>file:/home/wb2c0/NetBeansProjects/CodeFusion/src/student/Views/loginView.java</file>
         </group>

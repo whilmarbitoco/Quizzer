@@ -77,4 +77,6 @@ public interface AdminInterface {
    void informConnection(ServerHandler handler);
    
    void clientDisconnect(Student student);
+   
+   void deleteStudent(UUID uuid);
 }

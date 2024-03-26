@@ -40,4 +40,6 @@ public interface studentInterface {
     void exit();
     
     void closed();
+    
+    void skipQuiz(Quiz quiz);
 }

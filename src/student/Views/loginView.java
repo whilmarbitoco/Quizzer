@@ -27,9 +27,14 @@ public class loginView extends javax.swing.JFrame {
     public void showErrorMessage() {
         JOptionPane.showMessageDialog(rootPane, "Invalid Email or Password", "Login Failed", JOptionPane.ERROR_MESSAGE);
     }
-    
-       public void showServerOffline() {
+
+    public void showServerOffline() {
         JOptionPane.showMessageDialog(rootPane, "Server currently offline", "Server Offline", JOptionPane.ERROR_MESSAGE);
+    }
+    
+    
+    public void showLoginSuccess() {
+        JOptionPane.showMessageDialog(rootPane, "Login Successfully", "Login Success", JOptionPane.INFORMATION_MESSAGE);
     }
 
     @SuppressWarnings("unchecked")

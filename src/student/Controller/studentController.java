@@ -41,7 +41,8 @@ public class studentController implements studentInterface {
     boolean isLoggedIn = false;
     boolean answered = false;
     boolean isServerOnline = false;
-    
+    ArrayList<Quiz> skipQuiz = new ArrayList<>();
+
 //    Network
     Client client;
     String host = "127.0.0.1";
@@ -63,16 +64,15 @@ public class studentController implements studentInterface {
 
         confirmExit = new confirmDialogView(dashboard, true);
         confirmExit.studentListener(this);
-        confirmExit.setLocationRelativeTo(dashboard );
+        confirmExit.setLocationRelativeTo(dashboard);
 
         studentmodel = new studentModel();
 
         this.client = new Client(this.host, this.port, this);
         thread = new Thread(this.client);
-        
 
         auth();
-        
+
     }
 
     public void auth() {
@@ -90,15 +90,14 @@ public class studentController implements studentInterface {
         client.sendMessage(packet);
 
     }
-    
+
     public void startServer() {
         if (!isServerOnline) {
             thread.start();
-            isServerOnline  = true;
+            isServerOnline = true;
             return;
         }
-        
-        
+
     }
 
     @Override
@@ -112,6 +111,7 @@ public class studentController implements studentInterface {
 
     @Override
     public void authorize(boolean bol, Student student) {
+        login.showLoginSuccess();
         login.dispose();
         studentmodel.setCurrStudent(student);
         dashboard.setName(student.name);
@@ -132,8 +132,8 @@ public class studentController implements studentInterface {
     public void setNetwork(String host, int port) {
         this.host = host;
         this.port = port;
-        
-       startServer();
+
+        startServer();
         netView.setVisible(false);
     }
 
@@ -150,13 +150,28 @@ public class studentController implements studentInterface {
 
         for (Quiz quiz : quizes) {
             if (quiz.type.equals("Identification")) {
-                formIdentification identification = new formIdentification(dashboard, true, quiz.answer, quiz.question, quiz.time, this);
+                formIdentification identification = new formIdentification(dashboard, true, quiz, true, this);
                 identification.setLocationRelativeTo(null);
                 identification.setVisible(true);
             } else if (quiz.type.equals("Multiple Choice")) {
-                formMultipleChoice multipleChoice = new formMultipleChoice(dashboard, true, quiz.answer, quiz.question, quiz.time, quiz.choices, this);
+                formMultipleChoice multipleChoice = new formMultipleChoice(dashboard, true, quiz, true, this);
                 multipleChoice.setLocationRelativeTo(null);
                 multipleChoice.setVisible(true);
+            }
+        }
+
+        if (this.skipQuiz != null) {
+            for (Quiz q : this.skipQuiz) {
+                System.out.println(q.type);
+                if (q.type.equals("Identification")) {
+                    formIdentification identification = new formIdentification(dashboard, true, q, false, this);
+                    identification.setLocationRelativeTo(null);
+                    identification.setVisible(true);
+                } else if (q.type.equals("Multiple Choice")) {
+                    formMultipleChoice multipleChoice = new formMultipleChoice(dashboard, true, q, false, this);
+                    multipleChoice.setLocationRelativeTo(null);
+                    multipleChoice.setVisible(true);
+                }
             }
         }
 
@@ -237,6 +252,11 @@ public class studentController implements studentInterface {
         }
 
         System.exit(0);
+    }
+
+    @Override
+    public void skipQuiz(Quiz quiz) {
+        this.skipQuiz.add(quiz);
     }
 
 }

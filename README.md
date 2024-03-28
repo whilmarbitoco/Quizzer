@@ -8,6 +8,8 @@ A simple quiz maker written in java swing.
 - Teachers can create, edit, or delete a student.
 - Teachers can edit create or delete a quiz.
 - Teachers can also send a quiz through sockets.
+- Students can skip or answer a quiz.
+- Student can edit their personal information. 
 
 ## What technology and framework did we use? 🪄
 - Java swing

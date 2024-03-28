@@ -1,6 +1,7 @@
 # Code Fusion 💻
 
-Welcome to Code Fusion! This GitHub repository is dedicated to our group project in Computer Programming 2. A simple quiz maker written in java swing.
+Welcome to Code Fusion! This GitHub repository is dedicated to our group project in Computer Programming 2. 
+A simple quiz maker written in java swing.
 
 ## Features 🪄
 - Teachers can login or sign-in. 
@@ -8,7 +9,7 @@ Welcome to Code Fusion! This GitHub repository is dedicated to our group project
 - Teachers can edit create or delete a quiz.
 - Teachers can also send a quiz through sockets.
 
-# What technology and framework did we use? 🪄
+## What technology and framework did we use? 🪄
 - Java swing
 - MVC architecture
 - Sockets

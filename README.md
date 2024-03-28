@@ -1,21 +1,20 @@
-# Code Fusion 💻
+# Quizzer 💻
 
-Welcome to Code Fusion! This GitHub repository is dedicated to our group project in Computer Programming 2. 
-A simple quiz maker written in java swing.
+Welcome to Quizzer! This GitHub repository is dedicated to our group project in Computer Programming 2. A simple quiz maker written in Java Swing.
 
 ## Features 🪄
-- Teachers can login or sign-in. 
+- Teachers can log in or sign up.
 - Teachers can create, edit, or delete a student.
-- Teachers can edit create or delete a quiz.
-- Teachers can also send a quiz through sockets.
+- Teachers can create, edit, or delete a quiz.
+- Teachers can send a quiz through sockets.
 - Students can skip or answer a quiz.
-- Student can edit their personal information. 
+- Students can edit their personal information.
 
-## What technology and framework did we use? 🪄
-- Java swing
+## Technologies and Frameworks Used 🛠️
+- Java Swing
 - MVC architecture
 - Sockets
--  Threads
+- Threads
 
 ## How to Install? 🚀
 
@@ -24,17 +23,17 @@ Follow these steps to get started with our project:
 1. **Fork this repo:** Click on the "Fork" button in the top-right corner of this page to create your own copy of the repository.
 
 2. **Clone this repo:** Clone your forked repository to your local machine using the following command:
-    ```
-    git clone https://github.com/<your name>/CodeFusion
+    ```bash
+    git clone https://github.com/<your name>/Quizzer
     ```
 
 3. **Navigate to the repo directory:**
-    ```
-    cd CodeFusion
+    ```bash
+    cd Quizzer
     ```
 
 4. **Create a new branch:**
-    ```
+    ```bash
     git checkout -b <branch-name>
     ```
 
@@ -43,17 +42,17 @@ Follow these steps to get started with our project:
 Once you've made changes to the code, follow these steps to push them to your fork:
 
 1. **Add your changes to the staging area:**
-    ```
+    ```bash
     git add .
     ```
 
 2. **Commit your changes with a descriptive message:**
-    ```
+    ```bash
     git commit -m "Add feature X"
     ```
 
 3. **Push your changes to your fork of the repository:**
-    ```
+    ```bash
     git push origin <branch-name>
     ```
 
